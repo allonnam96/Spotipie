@@ -1,0 +1,126 @@
+body {
+    background-color: #0d1117; /* Spotify's background color */
+    color: white;
+    font-family: "CircularSpotifyBold"
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+  }
+  
+  form {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #181818;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  li {
+    color: red; /* Error messages in red */
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding in the width */
+    background: #0d1117; /* Match input background with body */
+    color: white; /* Text color for input */
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1DB954;
+    border: none;
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    cursor: pointer;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #1ED760;
+  }
+  
+  .social-login {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .social-login button {
+    margin-right: 5px;
+    padding: 10px;
+    width: auto;
+    background-color: #fff; /* White background for social buttons */
+    border-radius: 20px; /* Add border-radius to match other buttons */
+  }
+  
+  .social-login button:last-child {
+    margin-right: 0;
+  }
+  
+  .social-login img {
+    height: 20px; /* Example size, adjust as needed */
+  }
+  
+  /* Additional styles for 'Remember me' and 'Forgot your password?' links */
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .checkbox-label {
+    margin-left: 5px;
+    font-size: 14px;
+  }
+  
+  .forgot-password {
+    display: block;
+    text-align: center;
+    color: #B3B3B3; /* Light grey text */
+    margin-top: 20px;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  .forgot-password:hover {
+    color: white; /* White text on hover */
+  }
+  
+  .top-bar {
+    background-color: #000; /* Spotify's characteristic black background */
+    padding: 10px 20px; /* Adjust the padding as needed */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    height: 40px; /* Adjust based on your actual logo size */
+    width: auto;
+  }
+  
