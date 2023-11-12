@@ -1,0 +1,59 @@
+#signup {
+    margin: 1em auto 0;
+    width: 50%;
+    max-width: 350px;
+}
+
+#signup-header {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+    margin-bottom: 2em;
+}
+
+#signup-header p {
+    margin: 0;
+    font-size: 16px;
+}
+
+#signup-header > div > p:first-child {
+    margin-bottom: 0.3em;
+    font-family: font-medium;
+    /* font-size: 15px; */
+    color: grey;
+}
+
+#signup .directions {
+    font-family: "font-medium";
+    font-size: 13.5px;
+    color: grey;
+}
+
+.gender-option p {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 1em;
+    font-family: "font-light";
+    font-size: 14px;
+}
+
+.gender-option p::before {
+    content: "";
+    display: inline-block;
+    box-sizing: border-box;
+    margin-right: 1em;
+    height: 1em;
+    width: 1em;
+    border: 1px solid grey;
+    border-radius: 50%;
+    transition: border-width 0.05s ease-in;
+}
+
+.gender-option:hover p::before {
+    border-color: #1ED760;
+}
+
+.gender-option .selected::before {
+    border-width: 3.5px;
+    border-color: #1ED760;
+}

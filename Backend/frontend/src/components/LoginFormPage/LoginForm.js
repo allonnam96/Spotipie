@@ -40,7 +40,7 @@ function LoginFormPage() {
       <ul id="my-contacts">
         <li>Linked In</li>
         <li>Github</li>
-        <li>Angellist</li>
+        <li>Portfolio</li>
       </ul>
       <hr/>
       <form onSubmit={handleSubmit}>
@@ -67,7 +67,7 @@ function LoginFormPage() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="user-auth-button" type="submit">Log In</button>
       </form>
       <hr/>
       <div id = "signup">
