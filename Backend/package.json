@@ -1,7 +1,7 @@
 {
-  "name": "authenticate-me",
+  "name": "Spotipie",
   "version": "1.0.0",
-  "description": "A basic authentication app",
+  "description": "robust music app",
   "engines": {
     "node": "16.x"
   },

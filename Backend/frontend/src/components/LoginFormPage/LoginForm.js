@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
-import "./LoginForm.css";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import './LoginForm.css';
 
-function LoginForm() {
+function LoginFormPage() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+  if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,8 +33,16 @@ function LoginForm() {
   };
 
   return (
+    // make a different div header for the black header
     <>
-      <h1>Log in</h1>
+    <div id="login">
+      <h1>Log in to Spotipie</h1>
+      <ul id="my-contacts">
+        <li>Linked In</li>
+        <li>Github</li>
+        <li>Angellist</li>
+      </ul>
+      <hr/>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map(error => <li key={error}>{error}</li>)}
@@ -40,6 +53,7 @@ function LoginForm() {
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
+            placeholder="Email or username"
             required
           />
         </label>
@@ -49,13 +63,21 @@ function LoginForm() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
             required
           />
         </label>
         <button type="submit">Log In</button>
       </form>
+      <hr/>
+      <div id = "signup">
+        <span>Don't have an account? &nbsp;<Link to ="/signup">Sign up for Spotipie</Link></span>
+      </div>
+    </div>
     </>
+
+    // make another div \
   );
 }
 
-export default LoginForm;
+export default LoginFormPage;
