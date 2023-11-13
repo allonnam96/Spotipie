@@ -23,14 +23,19 @@ ApplicationRecord.transaction do
     password: 'password'
   )
 
+  Artist.create!(
+    name: 'NewJeans'
+  )
+
+  Album.create!(
+    title: 'GODS', 
+    artist_id: 1, 
+    year: 2023,
+    img_url: '../frontend/src/_imgs/albumImg/NewJeans/GODS_Cover.webp'
+  )
+
   # More users
-  10.times do 
-    User.create!({
-      username: Faker::Internet.unique.username(specifier: 3),
-      email: Faker::Internet.unique.email,
-      password: 'password'
-    }) 
-  end
+
 
   puts "Done!"
 end
