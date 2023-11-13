@@ -19,6 +19,7 @@ function SignupFormPage() {
   const [birthYear, setBirthYear] = useState("");
   const [gender, setGender] = useState("");
   const [passwordHidden, hidePassword] = useState();
+  const dob = `${birthYear}-${String(birthMonth).padStart(2, '0')}-${String(birthDay).padStart(2, '0')}`;
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -31,30 +32,43 @@ function SignupFormPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     // Validation before submission
-    if (stage === 3) {
-      if (!username) {
-        setErrors(['username missing']);
-        return;
-      }
-      // Submit the form data
-      return dispatch(sessionActions.signup({ email, username, password }))
-        .catch(async (res) => { });
-    }
-
+    const currentErrors = [];
     if (stage === 1 && !validateEmail(email)) {
-      setErrors([`This email is invalid. Make sure it's written like example@email.com`]);
+      currentErrors.push(`This email is invalid. Make sure it's written like example@email.com`);
+    } else if (stage === 2 && password.length < 8) {
+      currentErrors.push(`Password should contain at least 8 characters.`);
+    } else if (stage === 3 && !username) {
+      currentErrors.push(`Username missing`);
+    }
+  
+    if (currentErrors.length) {
+      setErrors(currentErrors);
       return;
     }
-
-    if (stage === 2 && password.length < 8) {
-      setErrors([`Password should contain at least 8 characters.`]);
-      return;
+  
+    if (stage < 3) {
+      setStage(prev => prev + 1);
+      setErrors([]);
+    } else {
+      // Attempt to sign up the user
+      dispatch(sessionActions.signup({ email, username, password}))
+        .then(() => {
+          // Handle successful signup here if needed
+        })
+        .catch(async (res) => {
+          // Handle errors from the signup process
+          const data = await res.json();
+          if (data && data.errors) {
+            setErrors(data.errors.map(error => error.message || error));
+          } else {
+            setErrors(['An unexpected error occurred. Please try again.']);
+          }
+        });
     }
-
-    setErrors([]);
-    setStage(prev => prev + 1);
   };
+  
 
 
 
@@ -125,7 +139,6 @@ function SignupFormPage() {
               </div>
             </div>
             <form onSubmit={handleSubmit}>
-
               <label>
                 Name
                 <p className="directions">This name will appear on your profile</p>
@@ -137,7 +150,6 @@ function SignupFormPage() {
                 />
                 {errors.some(e => e.includes("username")) && <p className="error">Enter a name for your profile.</p>}
               </label>
-
               <label>
                 Date of birth
                 <p className="directions">Why do we need your date of birth? Learn more.</p>
@@ -191,7 +203,7 @@ function SignupFormPage() {
                 )
               })}
 
-              <button className="user-auth-button" type="button" onClick={handleSubmit}>Next</button>
+              <button className="user-auth-button" type="button" onClick={handleSubmit}>Sign up</button>
             </form>
           </>
         );

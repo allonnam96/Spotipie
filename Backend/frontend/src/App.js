@@ -5,10 +5,15 @@ import LoginFormPage from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
 import Header from "./components/Header";
 
+
 function App() {
+  // const history = useHistory();
+  // const sessionUser = useSelector(state => state.session.user)
+  // if (!sessionUser) history.push('/')
+
   return (
     <>
-    {/* <Navigation/> */}
+    <Navigation/>
     <BrowserRouter>
         <Switch>
           <Route path="/login" >

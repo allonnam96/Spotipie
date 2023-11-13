@@ -11,6 +11,10 @@ function LoginFormPage() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const DEMO_USER_CREDENTIALS = {
+    credential: 'Demo',
+    password: 'password'
+  }
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -31,6 +35,24 @@ function LoginFormPage() {
         else setErrors([res.statusText]);
       });
   };
+
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    dispatch(sessionActions.login(DEMO_USER_CREDENTIALS))
+      .catch(async (res) => {
+        let data;
+        try {
+          data = await res.clone().json();
+        } catch {
+          data = await res.text();
+        }
+        if (data?.errors) setErrors(data.errors);
+        else if (data) setErrors([data]);
+        else setErrors([res.statusText]);
+      });
+  };
+  
 
   return (
     // make a different div header for the black header
@@ -68,6 +90,7 @@ function LoginFormPage() {
           />
         </label>
         <button className="user-auth-button" type="submit">Log In</button>
+        <button className="user-auth-button" onClick={handleDemoLogin}>Demo</button>
       </form>
       <hr/>
       <div id = "signup">

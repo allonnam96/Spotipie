@@ -16,5 +16,8 @@ class Api::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :username, :password)
+    # add more stuff
+    # add more to schema
+    # update seeds
   end
 end
