@@ -13,7 +13,7 @@ function App() {
 
   return (
     <>
-    {/* <Navigation/> */}
+    <Navigation/>
     <BrowserRouter>
         <Switch>
           <Route path="/login" >

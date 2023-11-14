@@ -1,7 +1,7 @@
 {
-  "name": "Spotipie",
+  "name": "spotipie",
   "version": "1.0.0",
-  "description": "robust music app",
+  "description": "Music App",
   "engines": {
     "node": "16.x"
   },
