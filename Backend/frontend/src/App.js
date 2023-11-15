@@ -13,19 +13,21 @@ function App() {
 
   return (
     <>
-    <Navigation/>
-    <BrowserRouter>
-        <Switch>
+      <Switch>
+        <Navigation />
+        <BrowserRouter>
+
           <Route path="/login" >
-            <Header/>
+            <Header />
             <LoginFormPage />
           </Route>
           <Route path="/signup">
-            <Header/>
+            <Header />
             <SignupFormPage />
           </Route>
-        </Switch>
-    </BrowserRouter>
+
+        </BrowserRouter>
+      </Switch>
     </>
   );
 }
