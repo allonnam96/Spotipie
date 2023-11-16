@@ -35,11 +35,12 @@ export const fetchAlbums = () => async (dispatch) => {
 };
 
 export const fetchAlbum = albumId => async (dispatch) => {
+
     const response = await fetch(`/api/albums/${albumId}`);
 
     if (response.ok) {
         const album = await response.json();
-        dispatch(receiveAlbum(album));
+        dispatch(receiveAlbum(album.album));
     }
 };
 

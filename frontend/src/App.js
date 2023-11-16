@@ -15,25 +15,26 @@ function App() {
 
   return (
     <>
-
-    <BrowserRouter>
+      <BrowserRouter>
+      <Navigation />
         <Switch>
           <Route path="/login" >
-            <Header/>
+            <Header />
             <LoginFormPage />
           </Route>
           <Route path="/signup">
-            <Header/>
+            <Header />
             <SignupFormPage />
           </Route>
-          <Navigation/>
+          <Route path="/albums">
+            <AlbumIndex />
+            
+          </Route>
           <Route path="/albums/:albumId">
-          <Navigation/>
-          <AlbumShow/>
-        
+          <AlbumShow />
           </Route>
         </Switch>
-    </BrowserRouter>
+      </BrowserRouter>
     </>
   );
 }

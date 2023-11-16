@@ -16,10 +16,10 @@ const AlbumIndex = () => {
       <>
         <ul>
           {
-            albums.map(album => <AlbumIndex
-              album={album}
-              key={album.id}
-            />)
+            albums.map(album => album.imgUrl
+            //   album={album}
+            //   key={album.id}
+            )
           }
         </ul>
       </>

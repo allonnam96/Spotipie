@@ -14,8 +14,8 @@ const AlbumShow = () => {
     
     return (
       <div>
-        <h2>{album.title}</h2>
-        <p>{album.img_url}</p>
+        <h2>{album?.title}</h2>
+        <p>{album?.img_url}</p>
         <Link to="/">album Index</Link>
       </div>
     );

@@ -1,0 +1,53 @@
+.top-nav{
+    width: 75%;
+    height: 4em;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #000;
+    align-items: center;
+    margin-top: 0.5em;
+    border-radius: 7px 7px 0 0;
+    position: absolute;
+    right: 0;
+}
+
+.top-nav ul{
+    margin-bottom: 0.9em;
+    margin-right: 1em;
+}
+
+/* Navigation.css */
+
+.signupBtn, .loginBtn {
+    text-decoration: none;
+    color: white; /* Text color */
+    padding: 0.7em 1.75em; /* Button padding */
+    border-radius: 22px; /* Rounded corners */
+    background-color: #000; /* Background color */
+    margin-right: 10px; /* Spacing between buttons */
+    transition: transform 0.3s ease;
+  }
+  
+  /* Hover effect */
+  .signupBtn:hover {
+    transform: scale(1.5);
+    color: white
+  }
+  .loginBtn:hover {
+    transform: scale(1.5);
+    border: 2px solid white;
+  }
+
+  /* Additional styling for the sign-up button to make it stand out */
+  .signupBtn {
+    background-color: rgb(0, 0, 0); /* White background */
+    color: darkgrey; /* Black text color */
+    border: 2px solid #000; /* Black border */
+  }
+  
+  .loginBtn {
+    background-color: white; /* Transparent background */
+    border: 2px solid white; /* White border */
+    color: black;
+  }
+  
