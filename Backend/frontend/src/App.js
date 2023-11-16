@@ -4,6 +4,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
 import Header from "./components/Header";
+import AlbumIndex from "./components/AlbumRow/albumIndex";
+import AlbumShow from "./components/AlbumRow/albumShow";
 
 
 function App() {
@@ -13,21 +15,25 @@ function App() {
 
   return (
     <>
-      <Switch>
-        <Navigation />
-        <BrowserRouter>
 
+    <BrowserRouter>
+        <Switch>
           <Route path="/login" >
-            <Header />
+            <Header/>
             <LoginFormPage />
           </Route>
           <Route path="/signup">
-            <Header />
+            <Header/>
             <SignupFormPage />
           </Route>
-
-        </BrowserRouter>
-      </Switch>
+          <Navigation/>
+          <Route path="/albums/:albumId">
+          <Navigation/>
+          <AlbumShow/>
+        
+          </Route>
+        </Switch>
+    </BrowserRouter>
     </>
   );
 }

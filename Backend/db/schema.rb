@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_13_221945) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_204236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_221945) do
     t.string "img_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "genre"
+    t.string "publisher"
     t.index ["artist_id", "title"], name: "index_albums_on_artist_id_and_title", unique: true
   end
 
@@ -28,7 +30,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_221945) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "thumbnail_img"
     t.index ["name"], name: "index_artists_on_name"
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string "title", null: false
+    t.bigint "album_id", null: false
+    t.string "duration", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_tracks_on_album_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +56,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_221945) do
   end
 
   add_foreign_key "albums", "artists"
+  add_foreign_key "tracks", "albums"
 end
