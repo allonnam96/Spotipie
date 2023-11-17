@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { NavLink, Route, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getAlbums, fetchAlbums } from "../../store/album";
+import { Link } from "react-router-dom"
 
 
 const AlbumIndex = () => {
@@ -15,8 +16,13 @@ const AlbumIndex = () => {
     return (
       <>
         <ul>
+          
           {
-            albums.map(album => album.imgUrl
+            albums.map(album => <li>
+            <Link to={`/albums/${album.id}`}> 
+            { album.title } 
+            </Link>
+            </li>
             //   album={album}
             //   key={album.id}
             )

@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import Header from "./components/Header";
 import AlbumIndex from "./components/AlbumRow/albumIndex";
 import AlbumShow from "./components/AlbumRow/albumShow";
+import Sidebar from "./components/Sidebar/sidebar";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      {/* <Sidebar /> */}
       <Navigation />
         <Switch>
           <Route path="/login" >
