@@ -6,30 +6,41 @@ import { Link } from "react-router-dom"
 
 
 const AlbumIndex = () => {
-    const dispatch = useDispatch();
-    const albums = useSelector(getAlbums);
-    
-    useEffect(() => {
-      dispatch(fetchAlbums());
-    }, [dispatch]);
-    
-    return (
-      <>
-        <ul>
-          
-          {
-            albums.map(album => <li>
-            <Link to={`/albums/${album.id}`}> 
-            { album.title } 
+  const dispatch = useDispatch();
+  const albums = useSelector(getAlbums);
+
+  useEffect(() => {
+    dispatch(fetchAlbums());
+  }, [dispatch]);
+
+  return (
+    <>
+      <div>
+
+        {
+          albums.map(album =><div>
+            <Link to={`/albums/${album.id}`}>
+              {album.title}
             </Link>
-            </li>
+            </div> 
+
+            // <Link to={`/artists/${artist.id}`}>
+            //   {album.artist.name}
+            // </Link>
             //   album={album}
             //   key={album.id}
-            )
-          }
-        </ul>
-      </>
-    );
-  }
-  
-  export default AlbumIndex;
+          )
+        }
+{
+          albums.map(album => <div>
+            { album.year }
+            { album.genre }
+            { album.publisher }
+          </div>)
+        }
+      </div>
+    </>
+  );
+}
+
+export default AlbumIndex;

@@ -13,7 +13,7 @@
 #  publisher  :string
 #
 class Album < ApplicationRecord
-    validates :title, :artist, :year, :img_url, presence: true
+    validates :title, :artist_id, :year, :img_url, presence: true
     validates :title, uniqueness: { scope: :artist_id }
     validates :year, numericality: { minimum: 1800, maximum: 2100}
 

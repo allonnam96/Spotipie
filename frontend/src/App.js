@@ -14,6 +14,8 @@ function App() {
   // const sessionUser = useSelector(state => state.session.user)
   // if (!sessionUser) history.push('/')
 
+  // most specific route must be above less specific
+  // exact path**
   return (
     <>
       <BrowserRouter>
@@ -28,12 +30,11 @@ function App() {
             <Header />
             <SignupFormPage />
           </Route>
-          <Route path="/albums">
-            <AlbumIndex />
-            
-          </Route>
           <Route path="/albums/:albumId">
           <AlbumShow />
+          </Route>
+          <Route path="/albums">
+            <AlbumIndex />
           </Route>
         </Switch>
       </BrowserRouter>

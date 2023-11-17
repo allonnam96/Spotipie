@@ -19,6 +19,7 @@ json.tracks do
             json.id track.id
             json.title track.title
             json.album track.album.title
+            json.albumId track.album.id
             json.artist track.artist.name
             json.duration track.duration
         end
