@@ -1,0 +1,7 @@
+.tracks-background{
+    position: fixed;
+    width: calc(100% - 25.5em);
+    height:calc(100% - 25.5em);
+    margin-top: 8em;
+    margin-left: 30em;
+}

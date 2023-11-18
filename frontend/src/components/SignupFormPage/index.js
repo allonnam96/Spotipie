@@ -30,6 +30,8 @@ function SignupFormPage() {
     return regex.test(email);
   };
 
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -211,12 +213,13 @@ function SignupFormPage() {
   };
 
   return (
-    <div id="signup">
-
-      <form onKeyDown={handleEnter}>
-        {errors.map((error, index) => <div key={index} className="error">{error}</div>)}
-        {renderStage()}
-      </form>
+    <div class="gradient-background">
+      <div id="signup">
+        <form onKeyDown={handleEnter}>
+          {errors.map((error, index) => <div key={index} className="error">{error}</div>)}
+          {renderStage()}
+        </form>
+      </div>
     </div>
   );
 }

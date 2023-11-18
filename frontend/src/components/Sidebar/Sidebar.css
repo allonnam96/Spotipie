@@ -1,77 +1,75 @@
 .sidebar {
-    background-color: rgb(0, 0, 0);
-    color: #fff;
-    height: 15vh;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    width: 35vh;
-    position: absolute;
-    border-radius: 17px;
-    margin-top: 0.4em;
-    margin-left: 0.4em;
-    width: 21.5%;
-    border-radius: 7px;
-  }
-  
-  .sidebar__logo {
-    width: 6em; /* Makes sure the logo is as wide as the sidebar container */
-    height: 6em; /* Maintains the aspect ratio of the logo */
+
+  color: #fff;
+  height: calc(100% - 0.8em);
+  display: flex;
+  flex-direction: column;
+  width: 24em;
+  /* position: absolute; */
+  border-radius: 17px;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  margin-bottom:0.7em;
+
+  /* border: 1px solid yellow; */
 }
 
-  .sidebarOption {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    cursor: pointer;
-    transition: 200ms color ease-in;
-    color: grey;
-    padding: .3em; 
-    margin-left: .1em;
-  }
+.sidebar__logo {
+  height: 3em;
+}
 
-  .sidebarOption:hover {
-    color: white;
-  }
-  
-  .sidebarOption__icon {
-    fill: grey; /* For SVG icons, this sets the color to white */
-    width: 20px; /* Adjust the size as needed */
-    height: 20px; /* Adjust the size as needed */
-    margin-right: 1em;
+.sidebarOption {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  cursor: pointer;
+  transition: 70ms color ease-in;
+  color: grey;
+  padding: .3em;
+  margin-left: .1em;
+}
+
+.sidebarOption:hover {
+  color: white;
+}
+
+.sidebarOption__icon {
+  fill: grey;
+  /* For SVG icons, this sets the color to white */
+  width: 20px;
+  /* Adjust the size as needed */
+  height: 20px;
+  /* Adjust the size as needed */
+  margin-right: 1em;
 }
 
 .sidebarOption svg {
-    fill: grey;
-    width: 1.6em; /* Adjust the size as needed */
-    height: 1.6em; /* Adjust the size as needed */
-    margin-right: 1em;
+  fill: grey;
+  width: 1.6em;
+  /* Adjust the size as needed */
+  height: 1.6em;
+  /* Adjust the size as needed */
+  margin-right: 1em;
 }
 
-.sidebar ul{
-    margin-top: 0.1em;
-
-}
-
-.sidebar li{
-    margin-top: 1em;
-    display: flex;
-    flex: 1;
+.sidebar ul {
+  margin-top: 0;
+  padding: .4em;
+  background-color: rgb(20, 20, 20);
+  border-radius: 7px;
 }
 
 .library-option {
-    background-color: rgb(0, 0, 0);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    /* position: absolute; */
-    left: 0;
-    border-radius: 7px;
-    /* overflow-y: auto; Allows scrolling if content overflows */
-    border: 1px solid red;
-    width: 25%;
-    width: 42vh;
-    margin-top: 4em;
-
+  background-color: rgb(20, 20, 20);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  /* padding: 20px; */
+  /* position: absolute; */
+  left: 0;
+  border-radius: 7px;
+  /* overflow-y: auto; Allows scrolling if content overflows */
+  width: 24em;
+  margin-top: .5em;
+  flex-grow: 1;
 }

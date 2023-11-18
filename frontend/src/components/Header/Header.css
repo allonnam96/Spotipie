@@ -2,18 +2,8 @@
     position: absolute;
   }
   
-  #header{
-    width: 100%;
-    padding: 2em;
   
-    background-color: rgb(0, 0, 0);
-    display: flex;
-    align-items: top;
-    justify-content: top;
-    color: white;
-  }
-  
-  #header form{
+  /* #header form{
     max-width: 300px;
     margin: 0 auto;
     padding: 20px;
@@ -22,4 +12,4 @@
     flex-direction: column;
     align-items: center;
     padding-top: 30px;
-  }
+  } */

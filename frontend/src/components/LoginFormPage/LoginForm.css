@@ -1,7 +1,6 @@
 /* "CircularSpotifyBold" */
 /* think about resize (responsive design) */
 
-
 #login{
   /* position: fixed; */
   margin: 2.2em auto 2em;
@@ -83,7 +82,7 @@ input[type="password"] {
   letter-spacing: -2px;
 }
 
-ul {
+#login ul {
   list-style: none;
   padding: 0;
   margin-bottom: 20px;

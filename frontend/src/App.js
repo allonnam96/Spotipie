@@ -15,12 +15,11 @@ function App() {
   // if (!sessionUser) history.push('/')
 
   // most specific route must be above less specific
-  // exact path**
+  // exact path
   return (
     <>
       <BrowserRouter>
-      {/* <Sidebar /> */}
-      <Navigation />
+
         <Switch>
           <Route path="/login" >
             <Header />
@@ -31,10 +30,14 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/albums/:albumId">
-          <AlbumShow />
+            <Sidebar />
+            <Navigation />
+            <AlbumShow />
           </Route>
-          <Route path="/albums">
+          <Route path="/">
             <AlbumIndex />
+            <Sidebar />
+            <Navigation />
           </Route>
         </Switch>
       </BrowserRouter>
