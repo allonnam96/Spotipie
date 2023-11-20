@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import AlbumIndex from "./components/AlbumRow/albumIndex";
 import AlbumShow from "./components/AlbumRow/albumShow";
 import Sidebar from "./components/Sidebar/sidebar";
+import Playbar from "./components/Playbar/Playbar";
 
 
 function App() {
@@ -33,11 +34,13 @@ function App() {
             <Sidebar />
             <Navigation />
             <AlbumShow />
+            <Playbar/>
           </Route>
           <Route path="/">
             <AlbumIndex />
             <Sidebar />
             <Navigation />
+            <Playbar/>
           </Route>
         </Switch>
       </BrowserRouter>

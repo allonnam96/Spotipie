@@ -1,0 +1,88 @@
+.Playbar {
+  background-color: #000000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+  z-index: 100;
+}
+
+.img-playbar, .progressBar {
+  flex: 1;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  /* Center the controls without taking up any unnecessary space */
+  flex: 0;
+  margin-right: 49em;
+}
+
+.img-playbar img {
+  height: 70px;
+  width: 70px;
+  margin-right: 20px;
+}
+
+.backwardBtn, .playBtn, .forwardBtn {
+  margin: 0 15px;
+}
+
+/* .speakerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align the speaker button to the right */
+
+
+.playBtn svg {
+  width: 1em; 
+  height: 1em;
+  fill: black;
+  padding: .5em;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+}
+
+.backwardBtn svg, .forwardBtn svg{
+  fill: #b3b3b3;
+  width: 1em; 
+  height: 1em;
+}
+
+.backwardBtn svg:hover, .forwardBtn svg:hover {
+  fill: #ffffff; /* Spotify's highlight color */
+  cursor: auto;
+}
+.playBtn svg:hover {
+  transform: scale(1.07);
+  cursor: auto;
+}
+
+/* If you have a progress bar, you can style it like this */
+.progressBar {
+  position: absolute;
+  bottom: .8em;
+  left: 33.5em;
+  width: 35%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.progressBarInner {
+  width: 50%; /* Example percentage */
+  height: 100%;
+  background-color: #ffffff;
+}
+
+/* Styles for additional elements can be added here */
+
+/* Ensure no content is hidden underneath the playbar */
+body {
+  padding-bottom: 90px; /* Same as the height of the Playbar */
+}
