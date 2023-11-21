@@ -10,5 +10,6 @@
         json.publisher album.publisher
         json.artistName album.artist.name
         # json.trackIds album.tracks.map { |track| track.id }
+        json.photoUrl album.photo.attached? ? album.photo.url : nil
     end
 end

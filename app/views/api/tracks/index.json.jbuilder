@@ -2,6 +2,7 @@
     json.set! track.id do
       json.id track.id
       json.title track.title
+      json.trackUrl track.track_url
       json.album track.album.title
       json.albumId track.album.id
       json.artist track.artist.name

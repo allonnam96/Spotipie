@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { ReactComponent as Backward } from "../../_imgs/svg/Backward.svg";
 import { ReactComponent as Forward } from "../../_imgs/svg/Forward.svg";
 import { ReactComponent as Speaker } from "../../_imgs/svg/Speaker.svg";
-// import { ReactComponent as Pause } from "../../_imgs/svg/Pause.svg";
+import { ReactComponent as Pause } from "../../_imgs/svg/Pause.svg";
 import { ReactComponent as Play } from "../../_imgs/svg/Play.svg"
 import "./Playbar.css";
 
@@ -77,6 +77,8 @@ const Playbar = (imgUrl) => {
                     <Backward />
                 </div>
                 <div className="playBtn">
+                <audio src="/media/cc0-audio/t-rex-roar.mp3"> 
+                </audio>
                     <Play />
                 </div>
                 <div className="forwardBtn">

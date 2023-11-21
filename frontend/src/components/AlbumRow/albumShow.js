@@ -9,19 +9,28 @@ const AlbumShow = () => {
     const dispatch = useDispatch();
     const album = useSelector(getAlbum(albumId));
     const tracks = useSelector(getTracks(albumId));
+
+    const trackClick = (track) => {
+      debugger
+      let audio = document.querySelector("audio")
+      audio.src = track.trackUrl
+    }
   
     useEffect(() => {
       dispatch(fetchAlbum(albumId));
     }, [dispatch, albumId]);
-    
+            
+
     return (
+          
       <div>
         <h2>{album?.title}</h2>
         <p>{album?.img_url}</p>
         {
-          tracks.map(track => <div>
+          tracks.map(track => <div onClick={ () => trackClick(track)}>
             { track.title }
             { track.duration }
+
           </div>)
         }
         <Link to="/">album Index</Link>

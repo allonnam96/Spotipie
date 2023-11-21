@@ -17,6 +17,8 @@ class Album < ApplicationRecord
     validates :title, uniqueness: { scope: :artist_id }
     validates :year, numericality: { minimum: 1800, maximum: 2100}
 
+    has_one_attached :photo
+ 
     belongs_to :artist,
         optional: true
 
