@@ -33,7 +33,7 @@ const Navigation = () => {
 
     if(!albumShow || !albumTitle) return;
 
-    albumShow.style.background = `linear-gradient(to bottom, ${getBackgroundColor(1)} 0% 10%, rgb(15, 15, 15)) 10% 100%`;
+    albumShow.style.background = `linear-gradient(to bottom, ${getBackgroundColor(1)} 0%, rgb(15, 15, 15) 70%)`;
     albumTitle.style.opacity = 0;
   
     albumShow.addEventListener("scroll", (e) => {
