@@ -1,0 +1,56 @@
+.album-show-container {
+    background: linear-gradient(to bottom, rgb(31, 31, 31), rgb(15, 15, 15));
+    position: fixed;
+    left: 25em;
+    top: 5em;
+    right: 0.5em;
+    bottom: 5em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.album-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+.album-cover {
+height: 14em;
+/* Adjust as needed */
+  padding: 1em;
+}
+
+.album-details h2 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.album-meta span {
+  color: #b3b3b3; /* Light grey color */
+  margin-right: 0.5em;
+}
+
+.track {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0; /* Adjust color to match your theme */
+}
+
+.track-number {
+    margin-right: 20px;
+    color: #b3b3b3; /* Adjust color to match your theme */
+    font-weight: bold;
+}
+
+.track-title {
+    flex-grow: 1;
+    color: #ffffff; /* Adjust color to match your theme */
+}
+
+.track-duration {
+    color: #b3b3b3; /* Adjust color to match your theme */
+}

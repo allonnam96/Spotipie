@@ -1,4 +1,5 @@
-.tracks-background{
+.tracks-background {
+    background: linear-gradient(to bottom, rgb(31, 31, 31), rgb(15, 15, 15));
     position: fixed;
     /* width: calc(100% - 29em);
     height:calc(100% - 16em);
@@ -7,7 +8,7 @@
 
     top: 5em;
 
-    right:0.5em;
+    right: 0.5em;
     bottom: 5em;
     padding: 2em 2em 0;
     display: grid;
@@ -17,27 +18,30 @@
     justify-content: space-between;
 }
 
-.tracks-background::after{
+.tracks-background::after {
+    
     content: "";
     flex: auto;
 }
 
 .album-background {
     border-radius: 7px;
-    transition: background-color 150ms ease-in-out;
+    
+    background-color: rgb(19, 19, 19);
 }
 
-.album-background:hover{
-    background-color:rgb(38, 38, 38);
-
-
+.album-background:hover {
+    background-color: rgb(44, 44, 44);
+    transition: background-color 250ms ease-in-out;
 }
+
 .album-background:hover img {
-    transform: scale(1.02);
+    transform: scale(1.03);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: 150ms ease-in;
 }
 
-.album-background>a{
+.album-background>a {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -45,7 +49,7 @@
 
 .album-img {
     display: grid;
-    place-items: center;      
+    place-items: center;
 }
 
 .album-img img {
@@ -55,7 +59,7 @@
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: transform 150ms ease-in-out, box-shadow 150ms ease-in-out;
 }
 
 

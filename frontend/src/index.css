@@ -81,17 +81,7 @@ body {
   background-image: linear-gradient(rgb(34, 34, 34), black);
 }
 
-input, select{
-  margin-top: 0.6em;
-  padding: 1.1em 0.95em;
 
-  border: 1px solid rgb(95, 94, 94);
-  -webkit-text-fill-color: white;
-  border-radius: 5px;
-  outline: none;
-  transition: border-color 0.1s ease-in;
-  /* ali */
-}
 
 /* general css */
 

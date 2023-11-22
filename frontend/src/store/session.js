@@ -2,11 +2,22 @@ import csrfFetch from "./csrf.js";
 
 const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
+const SET_CURRENT_TRACK = 'session/setCurrentTrack';
+const TOGGLE_PLAYING = 'session/togglePlaying';
 
 const setCurrentUser = (user) => ({
   type: SET_CURRENT_USER,
   payload: user
 });
+
+export const setCurrentTrack = (track_id) => ({
+  type: SET_CURRENT_TRACK,
+  payload: track_id
+})
+
+export const togglePlaying = () => ({
+  type: TOGGLE_PLAYING
+})
 
 const removeCurrentUser = () => ({
   type: REMOVE_CURRENT_USER
@@ -70,7 +81,8 @@ export const logout = () => async (dispatch) => {
 };
 
 const initialState = { 
-  user: JSON.parse(sessionStorage.getItem("currentUser"))
+  user: JSON.parse(sessionStorage.getItem("currentUser")),
+  isPlaying: false
 };
 
 const sessionReducer = (state = initialState, action) => {
@@ -79,6 +91,8 @@ const sessionReducer = (state = initialState, action) => {
       return { ...state, user: action.payload };
     case REMOVE_CURRENT_USER:
       return { ...state, user: null };
+    case TOGGLE_PLAYING:
+      return { ...state, isPlaying : state.isPlaying ? false : true };
     default:
       return state;
   }

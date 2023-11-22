@@ -6,13 +6,12 @@ import SidebarOption from "./sidebarOption";
 
 const Sidebar = () => {
 
-
     return (
         <div className="sidebar">
             <ul>
                 <img
                     className="sidebar__logo"
-                    src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
+                    src="../../_imgs/svg/spotifyLogo.png"
                     alt=""
                 />
 

@@ -31,8 +31,8 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/albums/:albumId">
-            {/* <Sidebar />
-            <Navigation /> */}
+            <Sidebar />
+            <Navigation />
             <AlbumShow />
             <Playbar/>
           </Route>

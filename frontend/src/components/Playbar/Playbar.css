@@ -1,27 +1,25 @@
-.Playbar {
+.footer {
   background-color: #000000;
-  color: white;
+  color: rgb(113, 113, 113);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  align-items: center;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: calc(100% - 2em);
   height: 5em;
   z-index: 100;
+  padding: 0 1em;
 }
 
-.img-playbar, .progressBar {
-  flex: 1;
-}
 
-.controls {
+.alignment-buttons {
   display: flex;
+  /* Aligning buttons next to each other */
   align-items: center;
-  /* Center the controls without taking up any unnecessary space */
-  flex: 0;
-  margin-right: 49em;
+  justify-content: center;
+  gap: 15px;
+  /* Adjust as needed for spacing between buttons */
 }
 
 .img-playbar img {
@@ -30,18 +28,36 @@
   margin-right: 20px;
 }
 
-.backwardBtn, .playBtn, .forwardBtn {
-  margin: 0 15px;
+.playbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  appearance: none;
 }
 
-/* .speakerBtn {
+.backwardBtn,
+.playPause,
+.forwardBtn {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-end; /* Align the speaker button to the right */
+}
+
+.speakerBtn {
+  display: flex;
+}
+
+.speakerBtn svg {
+  fill: white;
+  width: 1em;
+  height: 1em;
+
+}
 
 
-.playBtn svg {
-  width: 1em; 
+.pauseBtn svg {
+  width: 1em;
   height: 1em;
   fill: black;
   padding: .5em;
@@ -49,16 +65,29 @@
   border-radius: 50%;
 }
 
-.backwardBtn svg, .forwardBtn svg{
+.playBtn svg {
+  width: 1em;
+  height: 1em;
+  fill: black;
+  padding: .5em;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+}
+
+.backwardBtn svg,
+.forwardBtn svg {
   fill: #b3b3b3;
-  width: 1em; 
+  width: 1em;
   height: 1em;
 }
 
-.backwardBtn svg:hover, .forwardBtn svg:hover {
-  fill: #ffffff; /* Spotify's highlight color */
+.backwardBtn svg:hover,
+.forwardBtn svg:hover {
+  fill: #ffffff;
+  /* Spotify's highlight color */
   cursor: auto;
 }
+
 .playBtn svg:hover {
   transform: scale(1.07);
   cursor: auto;
@@ -66,22 +95,30 @@
 
 /* If you have a progress bar, you can style it like this */
 .progressBar {
-  position: absolute;
-  bottom: .8em;
-  left: 33.5em;
-  width: 35%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.3);
+
+  width: 100%; /* Make the progress bar take up the full width */
+  height: 8px; /* Adjust the height as needed */
+  margin-top: 8px; /* Add some margin for spacing */
+  height: 3px;
+  background-color: rgb(30, 30, 30);
 }
 
-.progressBarInner {
-  width: 50%; /* Example percentage */
-  height: 100%;
-  background-color: #ffffff;
+
+
+.progressBar:focus {
+  outline: none;
 }
+
+
+
 
 /* Styles for additional elements can be added here */
 
 /* Ensure no content is hidden underneath the playbar */
 
-
+.footer .bottom {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}
