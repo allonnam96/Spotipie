@@ -1,14 +1,14 @@
-.album-show-container {
-    background: linear-gradient(to bottom, rgb(31, 31, 31), rgb(15, 15, 15));
+#album-show-container {
     position: fixed;
     left: 25em;
-    top: 5em;
+    top: 0.5em;
     right: 0.5em;
-    bottom: 5em;
-    padding: 2em;
+    bottom: 5.5em;
+    padding: 4em 2em 2em;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    border-radius: 7px;
 }
 
 .album-header {
@@ -37,18 +37,31 @@ height: 14em;
     display: flex;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #e0e0e0; /* Adjust color to match your theme */
+    border-radius: 5px;
 }
 
-.track-number {
+.track:hover {
+    cursor: default;
+    background-color: rgb(58, 58, 58);
+}
+
+.track.selected {
+    background-color: rgb(94, 94, 94);
+}
+
+.track-number, .track svg {
+    height: 1em;
+    width: 1em;
     margin-right: 20px;
     color: #b3b3b3; /* Adjust color to match your theme */
+    fill: white;
     font-weight: bold;
 }
 
 .track-title {
     flex-grow: 1;
     color: #ffffff; /* Adjust color to match your theme */
+    padding: 1em
 }
 
 .track-duration {

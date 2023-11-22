@@ -47,4 +47,4 @@ export function AudioProvider({ children }) {
   );
 }
 
-export default Player;
+export default Player

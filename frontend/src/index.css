@@ -168,3 +168,26 @@ input[type="radio"] {
 .user-auth-button:hover {
   background-color: #1ED760;
 }
+
+input[type="range"]::-webkit-slider-runnable-track {
+  /* background-color: #053a5f; */
+  height: 0.4em;
+}
+
+/******** Firefox ********/
+input[type="range"]::-moz-range-track {
+  /* background-color: #053a5f; */
+  height: 0.4em;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -0.4em; /* Centers thumb on the track */
+  height: 1em;
+  opacity: 0;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  opacity: 1;
+}

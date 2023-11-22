@@ -43,7 +43,7 @@ const Playbar = () => {
 
     const calculateTime = (sec) => {
         const minutes = Math.floor(sec / 60);
-        const returnMin = minutes < 10 ? `0${minutes}` : `${minutes}`;
+        const returnMin = minutes < 10 ? `${minutes}` : `${minutes}`;
         const seconds = Math.floor(sec % 60);
         const returnSec = seconds < 10 ? `0${seconds}` : `${seconds}`;
         return `${returnMin}:${returnSec}`;
@@ -104,7 +104,9 @@ const Playbar = () => {
                     </div>
                 </div>
                 <div className="bottom">
-                    <div className="currentTime">{calculateTime(currentTime)}</div>
+                    <div className="currentTime">
+                    {duration && !isNaN(duration) ? calculateTime(currentTime) : "0:00"}
+                    </div>
                     <input
                         type="range"
                         className="progressBar"
@@ -114,7 +116,7 @@ const Playbar = () => {
                         onChange={changeProgress}
                     />
                     <div className="duration">
-                        {duration && !isNaN(duration) && calculateTime(duration)}
+                        {duration && !isNaN(duration) ? calculateTime(duration) : "0:00"}
                     </div>
                 </div>
             </div>

@@ -33,6 +33,7 @@
   flex-direction: column;
   align-items: center;
   width: 40%;
+  min-width: 40em;
   appearance: none;
 }
 
@@ -95,30 +96,38 @@
 
 /* If you have a progress bar, you can style it like this */
 .progressBar {
-
-  width: 100%; /* Make the progress bar take up the full width */
-  height: 8px; /* Adjust the height as needed */
-  margin-top: 8px; /* Add some margin for spacing */
-  height: 3px;
+  /* height: 3px; */
   background-color: rgb(30, 30, 30);
+  flex: 1;
+  accent-color: #ffffff;
 }
 
+.progressBar:hover {
+  /* height: 3px; */
+  outline: none;
+  border: none;
+
+}
 
 
 .progressBar:focus {
+  /* height: 3px; */
   outline: none;
+  border: none;
 }
-
-
-
-
-/* Styles for additional elements can be added here */
-
-/* Ensure no content is hidden underneath the playbar */
 
 .footer .bottom {
   display: flex;
   align-items: center;
   gap: 1em;
   width: 100%;
+  margin-top: 0.2em;
+}
+
+.currentTime, .duration{
+  min-width: 5em;
+}
+
+.currentTime {
+  text-align: right;
 }

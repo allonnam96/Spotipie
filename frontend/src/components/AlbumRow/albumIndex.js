@@ -20,17 +20,15 @@ const AlbumIndex = () => {
       <div className="tracks-background">
 
         {
-          (albums).map(album => <div className="album-background">
-            <Link to={`/albums/${album.id}`}>
+          (albums).map(album => <Link to={`/albums/${album.id}`} className="album-background">
             <div className="album-img">
-                <img src={ album.imgUrl }>
-                </img>
-              </div>
-              <div className="album-title">
-              { album.title }
-              </div>
-            </Link>
-          </div>
+              <img src={album.imgUrl}>
+              </img>
+            </div>
+            <div className="album-title">
+              {album.title}
+            </div>
+          </Link>
           )
         }
       </div>
