@@ -5,27 +5,47 @@ import { ReactComponent as Forward } from "../../_imgs/svg/Forward.svg";
 import { ReactComponent as Speaker } from "../../_imgs/svg/Speaker.svg";
 import { ReactComponent as Pause } from "../../_imgs/svg/Pause.svg";
 import { ReactComponent as Play } from "../../_imgs/svg/Play.svg";
+import { ReactComponent as SpeakerMuted } from "../../_imgs/svg/SpeakerMuted.svg"
+import { getAlbum, fetchAlbum } from "../../store/album";
 import { getTracks } from "../../store/track";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./Playbar.css";
 import { togglePlaying } from "../../store/session";
 
 const Playbar = () => {
+
     const isPlaying = useSelector(state => state.session.isPlaying);
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const { albumId } = useParams();
+    const album = useSelector(getAlbum(albumId));
     const tracks = useSelector(getTracks(albumId));
-    const [currentTrackIndex, setCurrentTrackIndex] = useState(0); // Keep track of the current track index
+    const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+    const [volume, setVolume] = useState(1);
+    const [isMuted, setIsMuted] = useState(false);
 
     const audioPlayer = useRef();
     const progressBar = useRef();
+    const volumeControl = useRef();
     const dispatch = useDispatch(); // Add useDispatch to get access to dispatch
 
     useEffect(() => {
         const seconds = Math.floor(audioPlayer.current.duration);
         setDuration(seconds);
-    }, [audioPlayer?.current?.duration]);
+
+        const player = audioPlayer.current;
+        const playNextSong = () => playNextTrack();
+    
+        if (player) {
+            player.addEventListener('ended', playNextSong);
+        }
+    
+        return () => {
+            if (player) {
+                player.removeEventListener('ended', playNextSong);
+            }
+        };
+    },[audioPlayer?.current?.duration, currentTrackIndex, tracks, isPlaying]);
 
     const changePlayPause = () => {
         if (!isPlaying) {
@@ -33,7 +53,28 @@ const Playbar = () => {
         } else {
             audioPlayer.current.pause();
         }
-        dispatch(togglePlaying()); // Dispatch the togglePlaying action
+        dispatch(togglePlaying());
+
+    };
+
+    const toggleMute = () => {
+        if (isMuted) {
+            // Unmute: restore the previous volume
+            audioPlayer.current.volume = volume;
+            setIsMuted(false);
+        } else {
+            // Mute: remember the current volume and set the volume to 0
+            setVolume(audioPlayer.current.volume);
+            audioPlayer.current.volume = 0;
+            setIsMuted(true);
+        }
+    };
+
+    const changeVolume = (e) => {
+        const newVolume = e.target.value;
+        audioPlayer.current.volume = newVolume;
+        setVolume(newVolume);
+        setIsMuted(newVolume === '0'); // If the volume is set to 0, consider it muted
     };
 
     const whilePlaying = () => {
@@ -62,24 +103,42 @@ const Playbar = () => {
     // Function to play the previous track
     const playPreviousTrack = () => {
         if (currentTrackIndex > 0) {
-            setCurrentTrackIndex(currentTrackIndex - 1);
-            audioPlayer.current.src = tracks[currentTrackIndex - 1].url;
-            audioPlayer.current.play();
+            const newIndex = currentTrackIndex - 1;
+            setCurrentTrackIndex(newIndex);
+            audioPlayer.current.src = tracks[newIndex].url;
+            if (isPlaying) {
+                audioPlayer.current.play();
+            }
         }
     };
 
     // Function to play the next track
     const playNextTrack = () => {
         if (currentTrackIndex < tracks.length - 1) {
-            setCurrentTrackIndex(currentTrackIndex + 1);
-            audioPlayer.current.src = tracks[currentTrackIndex + 1].url;
-            audioPlayer.current.play();
+            const newIndex = currentTrackIndex + 1;
+            setCurrentTrackIndex(newIndex);
+            audioPlayer.current.src = tracks[newIndex].url;
+            if (isPlaying) {
+                audioPlayer.current.play();
+            }
         }
     };
 
+    
+
     return (
         <div className="footer">
-            <div className="img-playbar"></div>
+            <div className="img-playbar">
+            <Link to={`/albums/${albumId}`}>
+                <img src={album?.imgUrl} alt="Album Cover" />
+                </Link>
+                <div className="footer-title">
+                    <Link to={`/albums/${albumId}`}>
+                        <div className="left-title">{album?.title}</div>
+                        <div className="left-name">{album?.artistName}</div>
+                    </Link>
+                </div>
+            </div>
             <div className="playbar">
                 <div className="controls">
                     <audio preload="metadata" ref={audioPlayer} onTimeUpdate={whilePlaying} />
@@ -105,7 +164,7 @@ const Playbar = () => {
                 </div>
                 <div className="bottom">
                     <div className="currentTime">
-                    {duration && !isNaN(duration) ? calculateTime(currentTime) : "0:00"}
+                        {duration && !isNaN(duration) ? calculateTime(currentTime) : "0:00"}
                     </div>
                     <input
                         type="range"
@@ -120,9 +179,21 @@ const Playbar = () => {
                     </div>
                 </div>
             </div>
-            <div className="speakerBtn">
-                <Speaker />
-                <div className="speakRange">------</div>
+
+            <div className="volume-control">
+                <div className="speakerBtn" onClick={toggleMute}>
+                    {isMuted ? <SpeakerMuted /> : <Speaker />}
+                </div>
+                <input
+                    type="range"
+                    className="volume-slider"
+                    ref={volumeControl}
+                    value={isMuted ? '0' : volume}
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    onChange={changeVolume}
+                />
             </div>
         </div>
     );

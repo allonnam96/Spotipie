@@ -11,28 +11,33 @@ const AlbumIndex = () => {
   const dispatch = useDispatch();
   const albums = useSelector(getAlbums);
 
+
   useEffect(() => {
     dispatch(fetchAlbums());
   }, [dispatch]);
 
   return (
-    <>
-      <div className="tracks-background">
+    <div id="album-show-container">
+      <div className="album-header">
+      <div className="album-details">
+        <div className="tracks-background">
 
-        {
-          (albums).map(album => <Link to={`/albums/${album.id}`} className="album-background">
-            <div className="album-img">
-              <img src={album.imgUrl}>
-              </img>
-            </div>
-            <div className="album-title">
-              {album.title}
-            </div>
-          </Link>
-          )
-        }
+          {
+            (albums.concat(albums)).map(album => <Link to={`/albums/${album.id}`} className="album-background">
+              <div className="album-img">
+                <img src={album.imgUrl}>
+                </img>
+              </div>
+              <div className="album-title">
+                {album.title}
+              </div>
+            </Link>
+            )
+          }
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

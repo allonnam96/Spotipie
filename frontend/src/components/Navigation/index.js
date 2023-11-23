@@ -29,11 +29,13 @@ const Navigation = () => {
     };
 
     const albumShow = document.getElementById("album-show-container");
+    const albumIndex = document.getElementById("album-show-container");
     const albumTitle = document.getElementById("album-title");
 
-    if(!albumShow || !albumTitle) return;
+    if(!albumShow || !albumTitle || !albumIndex) return;
 
-    albumShow.style.background = `linear-gradient(to bottom, ${getBackgroundColor(1)} 0%, rgb(15, 15, 15) 70%)`;
+    albumShow.style.background = `linear-gradient(to bottom, ${getBackgroundColor(1)} 0%, rgb(15, 15, 15) 50%)`;
+    albumIndex.style.background = `linear-gradient(to bottom, ${getBackgroundColor(1)} 0%, rgb(15, 15, 15) 50%)`;
     albumTitle.style.opacity = 0;
   
     albumShow.addEventListener("scroll", (e) => {
@@ -46,6 +48,7 @@ const Navigation = () => {
     });
 
   }, [album]);
+  
 
   let sessionLinks;
   if (sessionUser) {

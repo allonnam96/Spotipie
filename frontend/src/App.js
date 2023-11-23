@@ -30,17 +30,18 @@ function App() {
             <Header />
             <SignupFormPage />
           </Route>
-          <Route path="/albums/:albumId">
+          <Route path="/albums/:albumId" component={AlbumShow}>
             <Sidebar />
             <Navigation />
             <AlbumShow />
-            <Playbar/>
+            <Playbar />
           </Route>
           <Route path="/">
-            <AlbumIndex />
+            
             <Sidebar />
             <Navigation />
-            <Playbar/>
+            <AlbumIndex />
+            <Playbar />
           </Route>
         </Switch>
       </BrowserRouter>

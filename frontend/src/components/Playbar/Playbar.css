@@ -22,11 +22,30 @@
   /* Adjust as needed for spacing between buttons */
 }
 
-.img-playbar img {
-  height: 70px;
-  width: 70px;
-  margin-right: 20px;
+.img-playbar {
+  display: flex;
+  align-items: center;
+  gap: .1em;
 }
+
+.img-playbar img {
+  height: 4em;
+  margin-right: 20px;
+  border-radius: 7px;
+}
+
+.left-title {
+  color: white;
+  font-size: 16px;
+  margin-bottom: .2em;
+}
+
+.left-name {
+  color: white;
+  font-size: 11px;
+}
+
+
 
 .playbar {
   display: flex;
@@ -45,9 +64,6 @@
   align-items: center;
 }
 
-.speakerBtn {
-  display: flex;
-}
 
 .speakerBtn svg {
   fill: white;
@@ -103,15 +119,33 @@
 }
 
 .progressBar:hover {
-  /* height: 3px; */
   outline: none;
   border: none;
-
+}
+.progressBar:focus {
+  outline: none;
+  border: none;
 }
 
+.volume-control {
+  margin-right: 1em;
+  display: flex;
+  align-items: center;
+  gap: .7em;
+}
 
-.progressBar:focus {
-  /* height: 3px; */
+.volume-slider {
+  width: 7em;
+  background-color: rgb(30, 30, 30);
+  flex: 1;
+  accent-color: #ffffff;
+}
+
+.volume-slider:hover {
+  outline: none;
+  border: none;
+}
+.volume-slider:focus {
   outline: none;
   border: none;
 }
