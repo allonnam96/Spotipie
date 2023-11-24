@@ -45,7 +45,7 @@ const Playbar = () => {
                 player.removeEventListener('ended', playNextSong);
             }
         };
-    },[audioPlayer?.current?.duration, currentTrackIndex, tracks, isPlaying]);
+    },[audioPlayer?.current?.duration]);
 
     const changePlayPause = () => {
         if (!isPlaying) {
