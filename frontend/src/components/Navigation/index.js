@@ -66,7 +66,7 @@ const Navigation = () => {
 
   return (
     <div className="top-nav" style={{ backgroundColor: backgroundColor }}>
-        {album ? <div id="album-title">{album.title}</div> : <></>}
+        {album ? <div id="album-title">{album.title}</div> : <div></div>}
         {sessionLinks}
     </div>
   );
