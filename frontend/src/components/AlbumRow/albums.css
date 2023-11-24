@@ -1,5 +1,4 @@
-.tracks-background {
-    background: linear-gradient(to bottom, rgb(31, 31, 31), rgb(15, 15, 15));
+#tracks-background {
     position: fixed;
     /* width: calc(100% - 29em);
     height:calc(100% - 16em);
@@ -16,9 +15,11 @@
     gap: 1em;
     overflow-y: scroll;
     justify-content: space-between;
+    border-radius: 7px;
+
 }
 
-.tracks-background::after {
+#tracks-background::after {
     
     content: "";
     flex: auto;
@@ -73,6 +74,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     margin: 0.6em 1.4em 0.6em 0;
+    display:flex;
+    
 }
 
 /* add description */

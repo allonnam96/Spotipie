@@ -23,21 +23,39 @@ height: 14em;
   padding: 1em;
 }
 
+.album-details {
+margin-top: 6em;
+margin-left: 1em;
+}
+
+.album-meta {
+margin-top: 2em;;
+}
+
 .album-details h2 {
   margin: 0;
   color: #ffffff;
+  font-size: 75px;
 }
 
 .album-meta span {
   color: #b3b3b3; /* Light grey color */
   margin-right: 0.5em;
+  font-size: smaller;
+}
+.album-meta .artist-meta-name{
+    color: white;
 }
 
-.track {
+.track, .track-list {
     display: flex;
     align-items: center;
     padding: 10px;
     border-radius: 5px;
+}
+
+.track-list {
+    color:grey;
 }
 
 .track:hover {
@@ -49,21 +67,27 @@ height: 14em;
     background-color: rgb(94, 94, 94);
 }
 
-.track-number, .track svg {
+.track-number, .track-number-number, .track svg {
     height: 1em;
     width: 1em;
-    margin-right: 20px;
+    margin-right: 2em;
     color: #b3b3b3; /* Adjust color to match your theme */
     fill: white;
     font-weight: bold;
 }
 
-.track-title {
+.track-title, .track-title-title {
     flex-grow: 1;
-    color: #ffffff; /* Adjust color to match your theme */
     padding: 1em
 }
 
+
 .track-duration {
     color: #b3b3b3; /* Adjust color to match your theme */
+}
+
+
+.track-duration-duration svg{
+    width: 1em;
+    fill: #b3b3b3
 }

@@ -5,6 +5,8 @@ import { getAlbum, fetchAlbum } from "../../store/album";
 import { getTracks } from "../../store/track";
 import { getArtists } from "../../store/artist";
 import { ReactComponent as SmallPlay } from "../../_imgs/svg/smallPlay.svg";
+import { ReactComponent as Duration } from "../../_imgs/svg/Duration.svg";
+
 import { setCurrentTrack, togglePlaying } from "../../store/session";
 import "./albumShow.css"
 
@@ -59,15 +61,23 @@ const AlbumShow = () => {
     <div className="album-details">
       <h2>{album?.title}</h2>
       <div className="album-meta">
-        <span>{artistName}</span> 
-        •
-        <span>{album?.year}</span> •
-        <span>{tracks.length} songs, {formattedTotalDuration}</span>
+        <span className="artist-meta-name"> {album?.artistName}</span>
+        
+        <span>• {album?.year}</span> 
+        
+        <span>• {tracks.length} songs, {`${Math.floor(totalDuration / 60)} min ${`0${totalDuration % 60}`.slice(-2)} sec`}</span>
       </div>
     </div>
   </div>
   <div className="track-list-container">
     <div className="track-list">
+      <div className="track-list-line">
+    <span className="track-number-number"># </span>
+    <span className="track-title-title">Title</span>
+    <span className="track-duration-duration"> <Duration/> </span>
+    </div>
+    </div>
+
       {tracks.concat(tracks).map((track, index) => (
         <div className={"track" + (index === selected ? " selected" : "")}
           key={index}
@@ -81,7 +91,7 @@ const AlbumShow = () => {
           <span className="track-duration">{track.duration}</span>
         </div>
       ))}
-    </div>
+
   </div>
 </div>
 
