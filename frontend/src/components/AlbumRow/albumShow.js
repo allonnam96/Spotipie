@@ -71,11 +71,12 @@ const AlbumShow = () => {
   </div>
   <div className="track-list-container">
     <div className="track-list">
-      <div className="track-list-line">
+      
     <span className="track-number-number"># </span>
     <span className="track-title-title">Title</span>
     <span className="track-duration-duration"> <Duration/> </span>
     </div>
+    <div className="track-list-line">
     </div>
 
       {tracks.concat(tracks).map((track, index) => (
@@ -87,7 +88,11 @@ const AlbumShow = () => {
           {index === hovered || index === selected ?
             <SmallPlay /> :
             <span className="track-number">{index + 1}</span>}
-          <span className="track-title">{track.title}</span>
+
+          <span className="track-title">{track.title}
+            <span className="track-artistName">{album?.artistName}</span>
+          </span>
+
           <span className="track-duration">{track.duration}</span>
         </div>
       ))}

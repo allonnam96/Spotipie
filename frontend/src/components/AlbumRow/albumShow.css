@@ -18,36 +18,39 @@
 }
 
 .album-cover {
-height: 14em;
-/* Adjust as needed */
-  padding: 1em;
+    height: 14em;
+    /* Adjust as needed */
+    padding: 1em;
 }
 
 .album-details {
-margin-top: 6em;
-margin-left: 1em;
+    margin-top: 6em;
+    margin-left: 1em;
 }
 
 .album-meta {
-margin-top: 2em;;
+    margin-top: 2em;
+    ;
 }
 
 .album-details h2 {
-  margin: 0;
-  color: #ffffff;
-  font-size: 75px;
+    margin: 0;
+    color: #ffffff;
+    font-size: 75px;
 }
 
 .album-meta span {
-  color: #b3b3b3; /* Light grey color */
-  margin-right: 0.5em;
-  font-size: smaller;
+    color: #b3b3b3;
+    /* Light grey color */
+    margin-right: 0.5em;
+    font-size: smaller;
 }
-.album-meta .artist-meta-name{
+
+.album-meta .artist-meta-name {
     color: white;
 }
 
-.track, .track-list {
+.track {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -55,7 +58,16 @@ margin-top: 2em;;
 }
 
 .track-list {
-    color:grey;
+    display: flex;
+    align-items: center;
+    padding: 0.1em 0.5em;
+    border-radius: 5px;
+    color: #b3b3b3;
+}
+
+.track-list-line {
+    border-bottom: 0.01em solid #b3b3b3;
+    margin-bottom: 1em;
 }
 
 .track:hover {
@@ -67,27 +79,57 @@ margin-top: 2em;;
     background-color: rgb(94, 94, 94);
 }
 
-.track-number, .track-number-number, .track svg {
+.track-number,
+.track svg {
     height: 1em;
     width: 1em;
-    margin-right: 2em;
-    color: #b3b3b3; /* Adjust color to match your theme */
+    margin-right: 20px;
+    color: #b3b3b3;
     fill: white;
-    font-weight: bold;
 }
 
-.track-title, .track-title-title {
+.track-number-number {
+    margin-right: 1.6em;
+}
+
+
+.track-title {
+    flex-grow: 1;
+    color: #ffffff;
+    padding: 1em
+}
+
+.track-title-title {
     flex-grow: 1;
     padding: 1em
 }
 
-
 .track-duration {
-    color: #b3b3b3; /* Adjust color to match your theme */
+    color: #b3b3b3;
+    /* Adjust color to match your theme */
 }
 
+.track-duration-duration {
+    margin-right: 0.7em;
+}
 
-.track-duration-duration svg{
+.track-duration-duration svg {
+    fill: #b3b3b3;
     width: 1em;
-    fill: #b3b3b3
+}
+
+.track-artistName {
+    display: flex;
+
+}
+
+.track-artistName {
+    margin-top: 0.7em;
+    font-size: 12px;
+    color: #b3b3b3;
+}
+
+.track-duration {
+    display: flex;
+    justify-content: flex-end;
 }
