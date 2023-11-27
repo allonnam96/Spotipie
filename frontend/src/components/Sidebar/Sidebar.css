@@ -19,14 +19,19 @@
   align-items: center;
   height: 40px;
   cursor: pointer;
-  transition: 70ms color ease-in;
   color: grey;
   padding: .3em;
   margin-left: .1em;
+  text-decoration: none;
+}
+
+.homelink {
+  text-decoration: none;
 }
 
 .sidebarOption:hover {
   color: white;
+  transition: 70ms color ease-in;
 }
 
 .sidebarOption__icon {

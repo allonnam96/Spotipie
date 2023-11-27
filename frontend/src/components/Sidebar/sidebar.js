@@ -15,7 +15,7 @@ const Sidebar = () => {
                     src="../../_imgs/svg/spotifyLogo.png"
                     alt=""
                 />
-                <NavLink to="/">
+                <NavLink className="homelink" to="/">
                     <SidebarOption Icon={HomeIcon} option="Home" />
                 </NavLink>
                 <SidebarOption Icon={SearchIcon} option="Search" />
