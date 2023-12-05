@@ -47,7 +47,6 @@ const Navigation = () => {
       });
     } else {
       albumIndex.style.background = `linear-gradient(to bottom, ${getBackgroundColor(1)} 0%, rgb(15, 15, 15) 50%)`;
-      console.log("2")
     }
 
 

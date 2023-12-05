@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Music App",
   "engines": {
-    "node": "16.x"
+    "node": "18.17.1"
   },
   "directories": {
     "lib": "lib"
@@ -13,5 +13,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "main": "index.js"
 }
