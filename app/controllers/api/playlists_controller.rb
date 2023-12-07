@@ -2,7 +2,7 @@ class Api::PlaylistsController < ApplicationController
 
     def index
         if params[:queries]
-            @playlists = params[:queries] === "" ? [] : Playlist.includes(:uploader, tracks: [:album. :artist, :playlist_tracks]).where("title ILIKE '%#{params[:queries]}%'")
+            @playlists = params[:queries] === "" ? [] : Playlist.includes(:uploader, tracks: [:album, :artist, :playlist_tracks]).where("title ILIKE '%#{params[:queries]}%'")
         else
             @playlist = Playlist.includes(:uploader, tracks: [:album, :artist, :playlist_tracks]).all
         end
