@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ReactComponent as Backward } from "../../_imgs/svg/Backward.svg";
-import { ReactComponent as Forward } from "../../_imgs/svg/Forward.svg";
-import { ReactComponent as Speaker } from "../../_imgs/svg/Speaker.svg";
-import { ReactComponent as Pause } from "../../_imgs/svg/Pause.svg";
-import { ReactComponent as Play } from "../../_imgs/svg/Play.svg";
-import { ReactComponent as SpeakerMuted } from "../../_imgs/svg/SpeakerMuted.svg"
-import { getAlbum, fetchAlbum } from "../../store/album";
-import { getTracks } from "../../store/track";
+import { ReactComponent as Backward } from "../../../_imgs/svg/Backward.svg";
+import { ReactComponent as Forward } from "../../../_imgs/svg/Forward.svg";
+import { ReactComponent as Speaker } from "../../../_imgs/svg/Speaker.svg";
+import { ReactComponent as Pause } from "../../../_imgs/svg/Pause.svg";
+import { ReactComponent as Play } from "../../../_imgs/svg/Play.svg";
+import { ReactComponent as SpeakerMuted } from "../../../_imgs/svg/SpeakerMuted.svg"
+import { getAlbum, fetchAlbum } from "../../../store/album";
+import { getTracks } from "../../../store/track";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { togglePlaying } from "../../../store/session";
 import "./Playbar.css";
-import { togglePlaying } from "../../store/session";
 
 const Playbar = () => {
 

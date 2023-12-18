@@ -71,3 +71,9 @@
   margin-bottom: 5.5em;
   flex-grow: 1;
 }
+
+.sidebarOption_icon{
+  padding-left: 10px;
+  padding-right: 10px;
+  max-height: 100px;
+}

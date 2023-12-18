@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getAlbum } from '../../store/album';
+import { getAlbum } from '../../../store/album';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import ProfileButton from './ProfileButton';
 

@@ -1,33 +1,20 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
-import Navigation from "./components/Navigation";
-import Header from "./components/Header";
-import AlbumIndex from "./components/AlbumRow/albumIndex";
-import AlbumShow from "./components/AlbumRow/albumShow";
-import Sidebar from "./components/Sidebar/sidebar";
-import Playbar from "./components/Playbar/Playbar";
-
+import SignupFormPage from "./components/Form/SignupFormPage";
+import LoginFormPage from "./components/Form/LoginFormPage";
+import Navigation from "./components/Main/Navigation";
+import AlbumIndex from "./components/Main/AlbumRow/albumIndex";
+import AlbumShow from "./components/Main/AlbumRow/albumShow";
+import Sidebar from "./components/Main/Sidebar/sidebar";
+import Playbar from "./components/Main/Playbar/Playbar";
 
 function App() {
-  // const history = useHistory();
-  // const sessionUser = useSelector(state => state.session.user)
-  // if (!sessionUser) history.push('/')
-
-  // most specific route must be above less specific
-  // exact path
   return (
-    <>
-      <BrowserRouter>
-
         <Switch>
-          <Route path="/login" >
-            <Header />
+          <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
-            <Header />
             <SignupFormPage />
           </Route>
           <Route path="/albums/:albumId" component={AlbumShow}>
@@ -37,15 +24,13 @@ function App() {
             <Playbar />
           </Route>
           <Route path="/">
-            
             <Sidebar />
             <Navigation />
             <AlbumIndex />
             <Playbar />
           </Route>
         </Switch>
-      </BrowserRouter>
-    </>
+
   );
 }
 

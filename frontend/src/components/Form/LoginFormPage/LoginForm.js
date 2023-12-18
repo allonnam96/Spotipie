@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
+import * as sessionActions from "../../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
@@ -25,10 +25,9 @@ function LoginFormPage() {
       .catch(async (res) => {
         let data;
         try {
-          // .clone() essentially allows you to read the response body twice
           data = await res.clone().json();
         } catch {
-          data = await res.text(); // Will hit this case if, e.g., server is down
+          data = await res.text();
         }
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
@@ -55,7 +54,6 @@ function LoginFormPage() {
 
 
   return (
-    // make a different div header for the black header
     <div className="gradient-background">
       <div id="login">
         <h1>Log in to Spotipie</h1>
@@ -98,8 +96,6 @@ function LoginFormPage() {
         </div>
       </div>
     </div>
-
-    // make another div \
   );
 }
 

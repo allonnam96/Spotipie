@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
-import { getAlbum, fetchAlbum } from "../../store/album";
-import { getTracks } from "../../store/track";
-import { getArtists } from "../../store/artist";
-import { ReactComponent as SmallPlay } from "../../_imgs/svg/smallPlay.svg";
-import { ReactComponent as Duration } from "../../_imgs/svg/Duration.svg";
-
-import { setCurrentTrack, togglePlaying } from "../../store/session";
+import { getAlbum, fetchAlbum } from "../../../store/album";
+import { getTracks } from "../../../store/track";
+import { getArtists } from "../../../store/artist";
+import { ReactComponent as SmallPlay } from "../../../_imgs/svg/smallPlay.svg";
+import { ReactComponent as Duration } from "../../../_imgs/svg/Duration.svg";
+import { setCurrentTrack, togglePlaying } from "../../../store/session";
 import "./albumShow.css"
 
 const AlbumShow = () => {

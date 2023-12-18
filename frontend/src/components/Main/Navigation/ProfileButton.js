@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
-import { ReactComponent as UserIcon } from "../../_imgs/svg/UserIcon.svg";
+import * as sessionActions from '../../../store/session';
+import { ReactComponent as UserIcon } from "../../../_imgs/svg/UserIcon.svg";
 
 
 const ProfileButton = ({ user }) => {

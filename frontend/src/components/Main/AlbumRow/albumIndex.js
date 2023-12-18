@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAlbums, fetchAlbums } from "../../store/album";
+import { getAlbums, fetchAlbums } from "../../../store/album";
 import { Link } from "react-router-dom"
 import "./albums.css";
 

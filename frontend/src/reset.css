@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'Circular Spotify Bold';
-    src: local('Circular Spotify Bold'), url(./components/styling/fonts/Circular_Spotify_Font/CircularSpotifyText-Bold.otf) format("opentype");
+    src: local('Circular Spotify Bold'), url(../public/_fonts/CircularSpotifyText-Bold.otf) format("opentype");
 }
 
 @font-face {
     font-family: 'Circular Book';
-    src: local('Circular Book'), url(./components/styling/fonts/Circular_Spotify_Font/CircularSpotifyText-Book.otf) format("opentype");
+    src: local('Circular Book'), url(../public/_fonts/CircularSpotifyText-Book.otf) format("opentype");
 }
 
 h1{
@@ -16,13 +16,8 @@ h1{
 
 h2, h3, h4, h5, h6{
 	font-family: 'Circular Book';
-	/* -webkit-text-fill-color: grey; */
 	margin: 0
 }
-
-
-
-
 
 html, body, div, span, applet, object, iframe, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
