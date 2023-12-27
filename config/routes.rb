@@ -7,15 +7,20 @@ Rails.application.routes.draw do
   # post 'api/test', to: 'application#test'
   
   namespace :api, defaults: { format: :json } do
-    resource :session, only: [:show, :create, :destroy]
     resources :users, only: [:create, :destroy, :show] do 
-      resources :tracks, only: [:show]
+      resources :songs, only: [:show]
+      resources :likesongs, only: [:index]
+      resources :recently_visiteds, only: [:index]
+      get 'search', to: 'search#index'
     end
+    resource :session, only: [:show, :create, :destroy]
     resources :artists, only: [:index, :show]
     resources :albums, only: [:index, :show]
-    resources :tracks, only: [:index]
+    resources :songs, only: [:index, :show]
+    resources :playlists, only: [:show, :update, :index, :create, :destroy]
+    resources :playlist_songs, only: [:create, :destroy]
+    resources :likesongs, only: [:create, :destroy]
+    resources :recently_visiteds, only: [:create]
   end
-
-
   get '*path', to: "static_pages#frontend_index"
 end

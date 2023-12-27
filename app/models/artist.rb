@@ -14,7 +14,11 @@ class Artist < ApplicationRecord
     has_many :albums, 
         dependent: :destroy
 
-    has_many :tracks, 
-        through: :albums,
-        source: :tracks
+    has_many :songs, 
+    dependent: :destroy
+
+
+    def self.search(query)
+        where("name ILIKE ?", "%#{query}%")
+    end
 end

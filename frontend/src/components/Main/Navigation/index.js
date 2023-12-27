@@ -29,7 +29,7 @@ const Navigation = () => {
     };
 
     const albumShow = document.getElementById("album-show-container");
-    const albumIndex = document.getElementById("tracks-background");
+    const albumIndex = document.getElementById("songs-background");
     const albumTitle = document.getElementById("album-title");
     if((!albumShow || !albumTitle) && !albumIndex) return;
 
@@ -49,8 +49,7 @@ const Navigation = () => {
       albumIndex.style.background = `linear-gradient(to bottom, ${getBackgroundColor(1)} 0%, rgb(15, 15, 15) 50%)`;
     }
 
-
-  }, [album]);
+  }, [albumId]);
   
 
   let sessionLinks;

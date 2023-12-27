@@ -1,8 +1,8 @@
+import "./albums.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAlbums, fetchAlbums } from "../../../store/album";
 import { Link } from "react-router-dom"
-import "./albums.css";
 
 
 const AlbumIndex = () => {
@@ -27,7 +27,7 @@ const AlbumIndex = () => {
     <div id="album-index-container">
       <div className="album-header">
       <div className="album-details">
-        <div id="tracks-background">
+        <div id="songs-background">
         <h1>{greeting}</h1>
           {
             (albums.concat(albums)).map(album => <Link to={`/albums/${album.id}`} className="album-background">

@@ -1,1 +1,0 @@
-json.extract! artist, :id, :name, :thumbnail_img

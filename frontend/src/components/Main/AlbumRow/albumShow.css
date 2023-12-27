@@ -50,14 +50,14 @@
     color: white;
 }
 
-.track {
+.song {
     display: flex;
     align-items: center;
     padding: 10px;
     border-radius: 5px;
 }
 
-.track-list {
+.song-list {
     display: flex;
     align-items: center;
     padding: 0.1em 0.5em;
@@ -65,22 +65,22 @@
     color: #b3b3b3;
 }
 
-.track-list-line {
+.song-list-line {
     border-bottom: 0.01em solid #b3b3b3;
     margin-bottom: 1em;
 }
 
-.track:hover {
+.song:hover {
     cursor: default;
     background-color: rgb(58, 58, 58);
 }
 
-.track.selected {
+.song.selected {
     background-color: rgb(94, 94, 94);
 }
 
-.track-number,
-.track svg {
+.song-number,
+.song svg {
     height: 1em;
     width: 1em;
     margin-right: 20px;
@@ -88,48 +88,48 @@
     fill: white;
 }
 
-.track-number-number {
+.song-number-number {
     margin-right: 1.6em;
 }
 
 
-.track-title {
+.song-title {
     flex-grow: 1;
     color: #ffffff;
     padding: 1em
 }
 
-.track-title-title {
+.song-title-title {
     flex-grow: 1;
     padding: 1em
 }
 
-.track-duration {
+.song-duration {
     color: #b3b3b3;
     /* Adjust color to match your theme */
 }
 
-.track-duration-duration {
+.song-duration-duration {
     margin-right: 0.7em;
 }
 
-.track-duration-duration svg {
+.song-duration-duration svg {
     fill: #b3b3b3;
     width: 1em;
 }
 
-.track-artistName {
+.song-artistName {
     display: flex;
 
 }
 
-.track-artistName {
+.song-artistName {
     margin-top: 0.7em;
     font-size: 12px;
     color: #b3b3b3;
 }
 
-.track-duration {
+.song-duration {
     display: flex;
     justify-content: flex-end;
 }

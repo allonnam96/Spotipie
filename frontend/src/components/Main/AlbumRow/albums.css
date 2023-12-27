@@ -1,4 +1,4 @@
-#tracks-background {
+#songs-background {
     position: fixed;
     /* width: calc(100% - 29em);
     height:calc(100% - 16em);
@@ -19,7 +19,7 @@
 
 }
 
-#tracks-background::after {
+#songs-background::after {
     
     content: "";
     flex: auto;

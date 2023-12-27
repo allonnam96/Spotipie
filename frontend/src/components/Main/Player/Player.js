@@ -10,7 +10,7 @@ export function useAudio() {
 export function AudioProvider({ children }) {
   const audioPlayer = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
 
   const play = () => {
     audioPlayer.current.play();
@@ -22,12 +22,12 @@ export function AudioProvider({ children }) {
     setIsPlaying(false);
   };
 
-  const playNextTrack = () => {
-    // Implement logic to play the next track
+  const playNextSong = () => {
+
   };
 
-  const playPreviousTrack = () => {
-    // Implement logic to play the previous track
+  const playPreviousSong = () => {
+
   };
 
   return (
@@ -35,11 +35,11 @@ export function AudioProvider({ children }) {
       value={{
         audioPlayer,
         isPlaying,
-        currentTrackIndex,
+        currentSongIndex,
         play,
         pause,
-        playNextTrack,
-        playPreviousTrack,
+        playNextSong,
+        playPreviousSong,
       }}
     >
       {children}

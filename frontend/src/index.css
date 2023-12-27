@@ -166,13 +166,13 @@ input[type="radio"] {
   background-color: #1ED760;
 }
 
-input[type="range"]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-song {
   /* background-color: #053a5f; */
   height: 0.4em;
 }
 
 /******** Firefox ********/
-input[type="range"]::-moz-range-track {
+input[type="range"]::-moz-range-song {
   /* background-color: #053a5f; */
   height: 0.4em;
 }
@@ -180,7 +180,7 @@ input[type="range"]::-moz-range-track {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  margin-top: -0.4em; /* Centers thumb on the track */
+  margin-top: -0.4em; /* Centers thumb on the song */
   height: 1em;
   opacity: 0;
 }

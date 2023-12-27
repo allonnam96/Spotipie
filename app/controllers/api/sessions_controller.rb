@@ -13,6 +13,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login!(@user)
+      @current_song = current_song(@user)
       render 'api/users/show'
     else
       render json: { errors: ['The provided credentials were invalid.'] }, 

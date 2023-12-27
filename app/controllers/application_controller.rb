@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::API
-  include ActionController::RequestForgeryProtection
+  # include ActionController::RequestForgeryProtection
   
   rescue_from StandardError, with: :unhandled_error
   rescue_from ActionController::InvalidAuthenticityToken,
     with: :invalid_authenticity_token
   
-  protect_from_forgery with: :exception
-  before_action :snake_case_params, :attach_authenticity_token
+  # protect_from_forgery with: :exception
+  # before_action :snake_case_params, :attach_authenticity_token
 
   def current_user
     @current_user ||= User.find_by(session_token: session[:session_token])
@@ -16,16 +16,22 @@ class ApplicationController < ActionController::API
     session[:session_token] = user.reset_session_token!
   end
 
+  def logged_in?
+    !!current_user
+  end
+
   def logout!
-    current_user.reset_session_token! if current_user
+    current_user.reset_session_token! if logged_in?
     session[:session_token] = nil
     @current_user = nil
   end
 
+  def current_song(user)
+    user.current_song_id ? Song.find(user.current_song_id) : nil
+  end
+
   def require_logged_in
-    unless current_user
-      render json: { message: 'Unauthorized' }, status: :unauthorized 
-    end
+    redirect_to new_session_url unless logged_in?
   end
 
   private
@@ -34,9 +40,9 @@ class ApplicationController < ActionController::API
     params.deep_transform_keys!(&:underscore)
   end
 
-  def attach_authenticity_token
-    headers['X-CSRF-Token'] = masked_authenticity_token(session)
-  end
+  # def attach_authenticity_token
+  #   headers['X-CSRF-Token'] = masked_authenticity_token(session)
+  # end
   
   def invalid_authenticity_token
     render json: { message: 'Invalid authenticity token' }, 

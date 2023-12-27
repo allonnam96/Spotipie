@@ -6,8 +6,8 @@ import { ReactComponent as Speaker } from "../../../_imgs/svg/Speaker.svg";
 import { ReactComponent as Pause } from "../../../_imgs/svg/Pause.svg";
 import { ReactComponent as Play } from "../../../_imgs/svg/Play.svg";
 import { ReactComponent as SpeakerMuted } from "../../../_imgs/svg/SpeakerMuted.svg"
-import { getAlbum, fetchAlbum } from "../../../store/album";
-import { getTracks } from "../../../store/track";
+import { getAlbum } from "../../../store/album";
+import { getSongs } from "../../../store/song";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { togglePlaying } from "../../../store/session";
 import "./Playbar.css";
@@ -19,8 +19,8 @@ const Playbar = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const { albumId } = useParams();
     const album = useSelector(getAlbum(albumId));
-    const tracks = useSelector(getTracks(albumId));
-    const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+    const songs = useSelector(getSongs(albumId));
+    const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [volume, setVolume] = useState(1);
     const [isMuted, setIsMuted] = useState(false);
 
@@ -34,7 +34,7 @@ const Playbar = () => {
         setDuration(seconds);
 
         const player = audioPlayer.current;
-        const playNextSong = () => playNextTrack();
+        const playNextSong = () => playNextSong();
     
         if (player) {
             player.addEventListener('ended', playNextSong);
@@ -100,24 +100,23 @@ const Playbar = () => {
         setCurrentTime(progressBar.current.value);
     };
 
-    // Function to play the previous track
-    const playPreviousTrack = () => {
-        if (currentTrackIndex > 0) {
-            const newIndex = currentTrackIndex - 1;
-            setCurrentTrackIndex(newIndex);
-            audioPlayer.current.src = tracks[newIndex].url;
+    const playPreviousSong = () => {
+        if (currentSongIndex > 0) {
+            const newIndex = currentSongIndex - 1;
+            setCurrentSongIndex(newIndex);
+            audioPlayer.current.src = songs[newIndex].url;
             if (isPlaying) {
                 audioPlayer.current.play();
             }
         }
     };
 
-    // Function to play the next track
-    const playNextTrack = () => {
-        if (currentTrackIndex < tracks.length - 1) {
-            const newIndex = currentTrackIndex + 1;
-            setCurrentTrackIndex(newIndex);
-            audioPlayer.current.src = tracks[newIndex].url;
+
+    const playNextSong = () => {
+        if (currentSongIndex < songs.length - 1) {
+            const newIndex = currentSongIndex + 1;
+            setCurrentSongIndex(newIndex);
+            audioPlayer.current.src = songs[newIndex].url;
             if (isPlaying) {
                 audioPlayer.current.play();
             }
@@ -143,7 +142,7 @@ const Playbar = () => {
                 <div className="controls">
                     <audio preload="metadata" ref={audioPlayer} onTimeUpdate={whilePlaying} />
                     <div className="alignment-buttons">
-                        <div className="backwardBtn" onClick={playPreviousTrack}>
+                        <div className="backwardBtn" onClick={playPreviousSong}>
                             <Backward />
                         </div>
                         <div className="playPause" onClick={changePlayPause}>
@@ -157,7 +156,7 @@ const Playbar = () => {
                                 </div>
                             )}
                         </div>
-                        <div className="forwardBtn" onClick={playNextTrack}>
+                        <div className="forwardBtn" onClick={playNextSong}>
                             <Forward />
                         </div>
                     </div>

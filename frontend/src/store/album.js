@@ -7,10 +7,10 @@ const receiveAlbums = (albums) => ({
     albums
 });
 
-const receiveAlbum = (album, tracks) => ({
+const receiveAlbum = (album, songs) => ({
     type: RECEIVE_ALBUM,
     album,
-    tracks
+    songs
 });
 
 // const removeAlbum = (albumId) => ({
@@ -41,7 +41,7 @@ export const fetchAlbum = albumId => async (dispatch) => {
 
     if (response.ok) {
         const album = await response.json();
-        dispatch(receiveAlbum(album.album, album.tracks));
+        dispatch(receiveAlbum(album.album, album.songs));
     }
 };
 
