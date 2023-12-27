@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_20_194439) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_27_171134) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_194439) do
     t.string "genre"
     t.string "publisher"
     t.index ["artist_id", "title"], name: "index_albums_on_artist_id_and_title", unique: true
+    t.index ["title"], name: "index_albums_on_title"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -59,33 +60,59 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_194439) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "thumbnail_img"
+    t.boolean "verified", default: false, null: false
+    t.text "about"
+    t.string "about_img"
+    t.bigint "rank"
+    t.bigint "listeners"
     t.index ["name"], name: "index_artists_on_name"
   end
 
-  create_table "playlist_tracks", force: :cascade do |t|
-    t.bigint "playlist_id", null: false
-    t.bigint "track_id", null: false
+  create_table "likesongs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "song_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["playlist_id"], name: "index_playlist_tracks_on_playlist_id"
-    t.index ["track_id"], name: "index_playlist_tracks_on_track_id"
+  end
+
+  create_table "playlist_songs", force: :cascade do |t|
+    t.bigint "playlist_id", null: false
+    t.bigint "song_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_id"], name: "index_playlist_songs_on_playlist_id"
+    t.index ["song_id"], name: "index_playlist_songs_on_song_id"
   end
 
   create_table "playlists", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "uploader_id", null: false
+    t.integer "creator_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_url"
+  end
+
+  create_table "recently_visiteds", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "table"
+    t.string "title"
+    t.integer "table_id"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "tracks", force: :cascade do |t|
+  create_table "songs", force: :cascade do |t|
     t.string "title", null: false
     t.bigint "album_id", null: false
     t.string "duration", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "track_url"
-    t.index ["album_id"], name: "index_tracks_on_album_id"
+    t.string "song_url"
+    t.boolean "explicit", default: false, null: false
+    t.bigint "artist_id"
+    t.index ["album_id"], name: "index_songs_on_album_id"
+    t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,6 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_194439) do
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "current_song_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
@@ -103,5 +131,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_194439) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "albums", "artists"
-  add_foreign_key "tracks", "albums"
+  add_foreign_key "songs", "albums", on_delete: :cascade
 end

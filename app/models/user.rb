@@ -26,6 +26,18 @@ class User < ApplicationRecord
   
   before_validation :ensure_session_token
 
+  has_many :playlists,
+  foreign_key: :creator_id,
+  class_name: :Playlist
+
+  has_many :like_songs,
+  foreign_key: :user_id,
+  class_name: :Likesong
+
+  has_many :recently_visiteds,
+  foreign_key: :user_id,
+  class_name: :RecentlyVisited
+
   def self.find_by_credentials(credential, password)
     field = credential =~ URI::MailTo::EMAIL_REGEXP ? :email : :username
     user = User.find_by(field => credential)

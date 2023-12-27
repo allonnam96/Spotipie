@@ -2,7 +2,7 @@ import csrfFetch from "./csrf.js";
 
 const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
-const SET_CURRENT_TRACK = 'session/setCurrentTrack';
+const SET_CURRENT_SONG = 'session/setCurrentSong';
 const TOGGLE_PLAYING = 'session/togglePlaying';
 
 const setCurrentUser = (user) => ({
@@ -10,9 +10,9 @@ const setCurrentUser = (user) => ({
   payload: user
 });
 
-export const setCurrentTrack = (track_id) => ({
-  type: SET_CURRENT_TRACK,
-  payload: track_id
+export const setCurrentSong = (song_id) => ({
+  type: SET_CURRENT_SONG,
+  payload: song_id
 })
 
 export const togglePlaying = () => ({

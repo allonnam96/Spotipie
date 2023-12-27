@@ -2,8 +2,10 @@
     json.set! playlist.id do
       json.id playlist.id
       json.title playlist.title
-      json.uploader_id playlist.uploader_id
-      json.uploaderName playlist.uploader.username
-      json.playlistTrackIds playlist.tracks.map { |track| track.id }
+      json.creator_id playlist.creator_id
+      json.creatorName playlist.creator.username
+      json.playlistSongIds playlist.songs.map { |song| song.id }
+      json.imageUrl playlist.image_url
+      json.firstImage playlist.songs.empty? ? nil : playlist.songs.first.album.image_url
     end
   end

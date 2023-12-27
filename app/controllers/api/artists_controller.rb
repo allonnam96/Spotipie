@@ -1,21 +1,27 @@
 class Api::ArtistsController < ApplicationController
+    before_action :set_artist, only: %i[show]
 
     def index
-        @artists = Artist.includes(:albums).all
+        if params[:queries]
+            @artists = params[:queries] === "" ? [] : Artist.where("name ILIKE '%#{params[:queries]}%'")
+        else
+            @artists = Artist.includes(:albums, :songs).all
+        end
     end
 
     def show
-        @artist = Artist.includes(:albums).find(params[:id])
-        @albums_id = @artist.album.map { |album| album.id }
-        @tracks = @artist.tracks.order("RANDOM()").limit(5)
+        @artist = Artist.includes(:albums, :songs).find(params[:id])
+        @albums_ids = @artist.albums.map { |album| album.id }
+        @songs = @artist.songs.order("RANDOM()").limit(5)
     end
 
+    private
 
+    def set_artist
+        @artist = Artist.find(params[:id])
+    end
 
-    # private
-
-
-    # def artist_params
-    #     params.require(:artist).permit(:name)
-    # end
+    def artist_params
+        params.require(:artist).permit(:name, :verified, :about, :about_img, :rank, :listeners)
+    end
 end

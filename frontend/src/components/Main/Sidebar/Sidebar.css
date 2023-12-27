@@ -1,0 +1,79 @@
+.sidebar {
+
+  color: #fff;
+  height: calc(100% - 0.5em);
+  display: flex;
+  flex-direction: column;
+  width: 24em;
+  border-radius: 17px;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+}
+
+.sidebar__logo {
+  height: 3em;
+}
+
+.sidebarOption {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  cursor: pointer;
+  color: grey;
+  padding: .3em;
+  margin-left: .1em;
+  text-decoration: none;
+}
+
+.homelink {
+  text-decoration: none;
+}
+
+.sidebarOption:hover {
+  color: white;
+  transition: 70ms color ease-in;
+}
+
+.sidebarOption__icon {
+  fill: grey;
+  /* For SVG icons, this sets the color to white */
+  width: 20px;
+  /* Adjust the size as needed */
+  height: 20px;
+  /* Adjust the size as needed */
+  margin-right: 1em;
+}
+
+.sidebarOption svg {
+  fill: grey;
+  width: 1.6em;
+  /* Adjust the size as needed */
+  height: 1.6em;
+  /* Adjust the size as needed */
+  margin-right: 1em;
+}
+
+.sidebar ul {
+  margin-top: 0;
+  padding: .4em;
+  background-color: rgb(20, 20, 20);
+  border-radius: 7px;
+}
+
+.library-option {
+  background-color: rgb(20, 20, 20);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px;
+  width: 24em;
+  margin-top: .5em;
+  margin-bottom: 5.5em;
+  flex-grow: 1;
+}
+
+.sidebarOption_icon{
+  padding-left: 10px;
+  padding-right: 10px;
+  max-height: 100px;
+}

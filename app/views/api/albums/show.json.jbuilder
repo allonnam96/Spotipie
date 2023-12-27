@@ -4,26 +4,28 @@ json.album do
     json.id @album.id
     json.title @album.title
     json.year @album.year
-    json.img_url @album.img_url
-    json.artist_id @album.artist_id
+    json.imgUrl @album.img_url
+    json.artistId @album.artist_id
+    json.songIds @song_ids
     json.genre @album.genre
     json.publisher @album.publisher
     json.artistName @album.artist.name
-    json.artistName @album.artist.name
-    json.trackCount @album.tracks.size 
-    json.photoUrl @album.photo.attached? ? @album.photo.url : nil
+    json.songCount @album.songs.size 
+    json.publisher @album.publisher
+    # json.photoUrl @album.photo.attached? ? @album.photo.url : nil
 end
 
-json.tracks do
-    @album.tracks.each do |track|
-        json.set! track.id do
-            json.id track.id
-            json.title track.title
-            json.trackUrl track.track_url
-            json.album track.album.title
-            json.albumId track.album.id
-            json.artist track.artist.name
-            json.duration track.duration
+json.songs do
+    @album.songs.each do |song|
+        json.set! song.id do
+            json.id song.id
+            json.title song.title
+            json.songUrl song.song_url
+            json.album song.album.title
+            json.albumId song.album.id
+            json.artist song.artist.name
+            json.duration song.duration
+            json.explicit song.explicit
         end
     end
 end

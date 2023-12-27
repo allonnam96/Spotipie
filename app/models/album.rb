@@ -16,12 +16,11 @@ class Album < ApplicationRecord
     validates :title, :artist_id, :year, :img_url, presence: true
     validates :title, uniqueness: { scope: :artist_id }
     validates :year, numericality: { minimum: 1800, maximum: 2100}
-
-    has_one_attached :photo
  
-    belongs_to :artist,
-        optional: true
+    belongs_to :artist
+    has_many :songs
 
-    has_many :tracks, 
-        dependent: :destroy
+    def self.search(query)
+        where("title ILIKE ? OR genre ILIKE ?", "%#{query}%", "%#{query}%")
+    end
 end
