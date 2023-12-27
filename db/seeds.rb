@@ -118,7 +118,9 @@ require "open-uri"
 # Song.create!(title: "Ready For Love", artist_id: 5, album_id: 8, duration: "3:04", song_url:"https://spotipie-seeds.s3.amazonaws.com/Born+Pink/Ready+for+love.mp3")
 
 songs_info = [
+
   {title: "Attention", artist_id: 1, album_id: 1, explicit: false, duration: "3:00", song_url: "https://spotipie-seeds.s3.amazonaws.com/New+Jeans/Attention.mp3", filename: "New+Jeans/Attention.mp3"},
+
   {title: "Hype Boy", artist_id: 1, album_id: 1, explicit: false, duration: "2:59", song_url: "https://spotipie-seeds.s3.amazonaws.com/New+Jeans/HypeBoy.mp3", filename:"New+Jeans/HypeBoy.mp3"},
   {title: "Cookie", artist_id: 1, album_id: 1, explicit: false, duration: "3:55", song_url: "https://spotipie-seeds.s3.amazonaws.com/New+Jeans/Cookie.mp3", filename:"New+Jeans/Cookie.mp3"},
   {title: "Hurt", artist_id: 1, album_id: 1, explicit: false, duration: "2:57", song_url: "https://spotipie-seeds.s3.amazonaws.com/New+Jeans/Hurt.mp3", filename:"New+Jeans/Hurt.mp3"},
@@ -173,6 +175,7 @@ songs_info = [
   {title: "Hard to Love", artist_id: 5, album_id: 8, explicit: true, duration: "2:42", song_url:"https://spotipie-seeds.s3.amazonaws.com/Born+Pink/Hard+to+Love.mp3", filename:"Born+Pink/Hard+to+Love.mp3"},
   {title: "The Happiest Girl", artist_id: 5, album_id: 8, explicit: false, duration: "3:42", song_url:"https://spotipie-seeds.s3.amazonaws.com/Born+Pink/The+Happiest+Girl.mp3", filename:"Born+Pink/The+Happiest+Girl.mp3"},
   {title: "Tally", artist_id: 5, album_id: 8, explicit: true, duration: "3:04", song_url:"https://spotipie-seeds.s3.amazonaws.com/Born+Pink/Tally.mp3", filename:"Born+Pink/Tally.mp3"},
+
   {title: "Ready For Love", artist_id: 5, album_id: 8, explicit: false, duration: "3:04", song_url:"https://spotipie-seeds.s3.amazonaws.com/Born+Pink/Ready+for+love.mp3", filename:"Born+Pink/Ready+for+love.mp3"}
 
 ]
@@ -187,9 +190,9 @@ songs_info.each do |song_info|
         explicit: song_info[:explicit],
         duration: song_info[:duration],
         song_url: song_info[:song_url]
-      )
+        )
 
-      file = URI.open(song_info[:song_url])
+      file = URI.open(song_info[:song_url],ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE)
       song.song_file.attach(io: file, filename: song_info[:filename])
 
       song.save!
