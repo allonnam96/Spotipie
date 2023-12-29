@@ -1,3 +1,4 @@
+import "./Playbar.css";
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ReactComponent as Backward } from "../../../_imgs/svg/Backward.svg";
@@ -9,61 +10,62 @@ import { ReactComponent as SpeakerMuted } from "../../../_imgs/svg/SpeakerMuted.
 import { getAlbum } from "../../../store/album";
 import { getSongs } from "../../../store/song";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { togglePlaying } from "../../../store/session";
-import "./Playbar.css";
+import { togglePlay } from "../../../store/playbar";
+import { receiveSong } from "../../../store/song";
 
 const Playbar = () => {
 
+    const currentAlbum = useSelector(state => state.playbar.currentAlbum)
+    const currentSong = useSelector(state => state.playbar.currentSong)
     const isPlaying = useSelector(state => state.session.isPlaying);
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const { albumId } = useParams();
     const album = useSelector(getAlbum(albumId));
-    const songs = useSelector(getSongs(albumId));
-    const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [volume, setVolume] = useState(1);
     const [isMuted, setIsMuted] = useState(false);
 
     const audioPlayer = useRef();
     const progressBar = useRef();
     const volumeControl = useRef();
-    const dispatch = useDispatch(); // Add useDispatch to get access to dispatch
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const seconds = Math.floor(audioPlayer.current.duration);
         setDuration(seconds);
 
         const player = audioPlayer.current;
-        const playNextSong = () => playNextSong();
-    
         if (player) {
             player.addEventListener('ended', playNextSong);
         }
-    
         return () => {
             if (player) {
                 player.removeEventListener('ended', playNextSong);
             }
         };
-    },[audioPlayer?.current?.duration]);
+    }, [audioPlayer?.current?.duration]);
+
+    useEffect(() => {
+        let audio = document.querySelector("audio")
+        audio.src = currentSong.songUrl
+        audio.play()
+    }, [currentSong])
 
     const changePlayPause = () => {
+        console.log("Is Playing:", isPlaying);
         if (!isPlaying) {
             audioPlayer.current.play();
         } else {
             audioPlayer.current.pause();
         }
-        dispatch(togglePlaying());
-
+        dispatch(togglePlay(currentSong));
     };
 
     const toggleMute = () => {
         if (isMuted) {
-            // Unmute: restore the previous volume
             audioPlayer.current.volume = volume;
             setIsMuted(false);
         } else {
-            // Mute: remember the current volume and set the volume to 0
             setVolume(audioPlayer.current.volume);
             audioPlayer.current.volume = 0;
             setIsMuted(true);
@@ -74,7 +76,7 @@ const Playbar = () => {
         const newVolume = e.target.value;
         audioPlayer.current.volume = newVolume;
         setVolume(newVolume);
-        setIsMuted(newVolume === '0'); // If the volume is set to 0, consider it muted
+        setIsMuted(newVolume === '0');
     };
 
     const whilePlaying = () => {
@@ -101,35 +103,33 @@ const Playbar = () => {
     };
 
     const playPreviousSong = () => {
-        if (currentSongIndex > 0) {
-            const newIndex = currentSongIndex - 1;
-            setCurrentSongIndex(newIndex);
-            audioPlayer.current.src = songs[newIndex].url;
-            if (isPlaying) {
-                audioPlayer.current.play();
-            }
+        const currentSongIndex = currentAlbum.findIndex(song => song.id === currentSong.id);
+
+        const prevSongIndex = (currentSongIndex - 1 + currentAlbum.length) % currentAlbum.length; // Loop to the end
+        const prevSong = currentAlbum[prevSongIndex];
+        dispatch(receiveSong(prevSong));
+
+        if (!isPlaying) {
+            dispatch(togglePlay(prevSong));
         }
     };
-
 
     const playNextSong = () => {
-        if (currentSongIndex < songs.length - 1) {
-            const newIndex = currentSongIndex + 1;
-            setCurrentSongIndex(newIndex);
-            audioPlayer.current.src = songs[newIndex].url;
-            if (isPlaying) {
-                audioPlayer.current.play();
-            }
+        const currentSongIndex = currentAlbum.findIndex(song => song.id === currentSong.id);
+        const nextSongIndex = (currentSongIndex + 1) % currentAlbum.length; // Loop back to the start
+        const nextSong = currentAlbum[nextSongIndex];
+        dispatch(receiveSong(nextSong));
+
+        if (!isPlaying) {
+            dispatch(togglePlay(nextSong));
         }
     };
-
-    
 
     return (
         <div className="footer">
             <div className="img-playbar">
-            <Link to={`/albums/${albumId}`}>
-                <img src={album?.imgUrl} alt="Album Cover" />
+                <Link to={`/albums/${albumId}`}>
+                    <img src={album?.imgUrl} alt="Album Cover" />
                 </Link>
                 <div className="footer-title">
                     <Link to={`/albums/${albumId}`}>

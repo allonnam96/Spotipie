@@ -1,9 +1,9 @@
 import csrfFetch from "./csrf.js";
 
-const SET_CURRENT_USER = 'session/setCurrentUser';
-const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
-const SET_CURRENT_SONG = 'session/setCurrentSong';
-const TOGGLE_PLAYING = 'session/togglePlaying';
+export const SET_CURRENT_USER = 'session/setCurrentUser';
+export const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
+export const SET_CURRENT_SONG = 'session/setCurrentSong';
+
 
 const setCurrentUser = (user) => ({
   type: SET_CURRENT_USER,
@@ -13,10 +13,6 @@ const setCurrentUser = (user) => ({
 export const setCurrentSong = (song_id) => ({
   type: SET_CURRENT_SONG,
   payload: song_id
-})
-
-export const togglePlaying = () => ({
-  type: TOGGLE_PLAYING
 })
 
 const removeCurrentUser = () => ({
@@ -91,8 +87,6 @@ const sessionReducer = (state = initialState, action) => {
       return { ...state, user: action.payload };
     case REMOVE_CURRENT_USER:
       return { ...state, user: null };
-    case TOGGLE_PLAYING:
-      return { ...state, isPlaying : state.isPlaying ? false : true };
     default:
       return state;
   }
