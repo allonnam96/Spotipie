@@ -1,22 +1,16 @@
 export const RECEIVE_ALBUMS = "albums/RECEIVE_ALBUMS";
 export const RECEIVE_ALBUM = "album/RECEIVE_ALBUM";
-// export const REMOVE_ALBUM = "albums/REMOVE_ALBUM";
 
-const receiveAlbums = (albums) => ({
+export const receiveAlbums = (albums) => ({
     type: RECEIVE_ALBUMS,
     albums
 });
 
-const receiveAlbum = (album, songs) => ({
+export const receiveAlbum = (album, songs) => ({
     type: RECEIVE_ALBUM,
     album,
     songs
 });
-
-// const removeAlbum = (albumId) => ({
-//     type: REMOVE_ALBUM,
-//     albumId
-// });
 
 export const getAlbum = albumId => state => {
     return state?.albums ? state.albums[albumId] : null;
@@ -51,10 +45,6 @@ const albumsReducer = (state = {}, action) => {
         return { ...action.albums };
       case RECEIVE_ALBUM:
         return { ...state, [action.album.id]: action.album };
-    //   case REMOVE_ALBUM:
-    //     const newState = { ...state };
-    //     delete newState[action.albumId];
-    //     return newState;
       default:
         return state;
     }
