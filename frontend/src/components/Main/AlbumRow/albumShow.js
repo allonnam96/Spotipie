@@ -4,10 +4,9 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { getAlbum, fetchAlbum } from "../../../store/album";
 import { getSongs } from "../../../store/song";
-// import { getArtists } from "../../../store/artist";
 import { ReactComponent as SmallPlay } from "../../../_imgs/svg/smallPlay.svg";
 import { ReactComponent as Duration } from "../../../_imgs/svg/Duration.svg";
-import { togglePlaying } from "../../../store/session";
+import { receiveAlbum, togglePlay } from "../../../store/playbar";
 
 const AlbumShow = () => {
     const isPlaying = useSelector(state => state.session.isPlaying);
@@ -15,8 +14,6 @@ const AlbumShow = () => {
     const dispatch = useDispatch();
     const album = useSelector(getAlbum(albumId));
     const songs = useSelector(getSongs(albumId));
-    // const artistName = useSelector(state => getArtists(state, albumId));
-
     const [selected, setSelected] = useState(-1);
     const [hovered, setHovered] = useState(-1);
 
@@ -29,19 +26,19 @@ const AlbumShow = () => {
       setHovered(index);
     };
 
-    const handleSelect = (song, index) => {
+    const handleSelect = (song, index, album) => {
       if(selected == index) {
-        play(song);
+        play(song, album);
       } else {
         setSelected(index);
       }
     };
 
-
-    // const formattedTotalDuration = `${Math.floor(totalDuration / 60)}:${`0${totalDuration % 60}`.slice(-2)}`;
-
-    const play = (song) => {
-      if (!isPlaying){dispatch(togglePlaying())}
+    const play = (song, album) => {
+      if (!isPlaying){
+        dispatch(togglePlay(song))
+        dispatch(receiveAlbum(album))
+      }
       let audio = document.querySelector("audio")
       audio.src = song.songUrl
       audio.play()
@@ -50,6 +47,8 @@ const AlbumShow = () => {
     useEffect(() => {
       dispatch(fetchAlbum(albumId));
     }, [dispatch, albumId]);
+
+    
             
 
     return (
@@ -78,12 +77,12 @@ const AlbumShow = () => {
     <div className="song-list-line">
     </div>
 
-      {songs.concat(songs).map((song, index) => (
+      {songs.concat(songs).map((song, index, album) => (
         <div className={"song" + (index === selected ? " selected" : "")}
           key={index}
           onMouseEnter={() => handleHover(index)}
           onMouseLeave={() => handleHover(-1)}
-          onClick={() => (handleSelect(song, index))}>
+          onClick={() => (handleSelect(song, index, album))}>
           {index === hovered || index === selected ?
             <SmallPlay /> :
             <span className="song-number">{index + 1}</span>}
