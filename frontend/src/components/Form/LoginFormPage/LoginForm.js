@@ -58,9 +58,9 @@ function LoginFormPage() {
       <div id="login">
         <h1>Log in to Spotipie</h1>
         <ul id="my-contacts">
-          <li>Linked In</li>
-          <li>Github</li>
-          <li>Portfolio</li>
+          <a href="https://www.linkedin.com/in/hyun-jun96/" target="_blank" rel="noopener noreferrer" className="contact-item">LinkedIn</a>
+          <a href="https://github.com/allonnam96" target="_blank" rel="noopener noreferrer" className="contact-item">Github</a>
+          <a href="https://allon-porfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="contact-item">Portfolio</a>
         </ul>
         <hr />
         <form onSubmit={handleSubmit}>

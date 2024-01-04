@@ -30,12 +30,11 @@ function SignupFormPage() {
     return regex.test(email);
   };
 
-  
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Validation before submission
+
     const currentErrors = [];
     if (stage === 1 && !validateEmail(email)) {
       currentErrors.push(`This email is invalid. Make sure it's written like example@email.com`);
@@ -44,23 +43,20 @@ function SignupFormPage() {
     } else if (stage === 3 && !username) {
       currentErrors.push(`Username missing`);
     }
-  
+
     if (currentErrors.length) {
       setErrors(currentErrors);
       return;
     }
-  
+
     if (stage < 3) {
       setStage(prev => prev + 1);
       setErrors([]);
     } else {
-      // Attempt to sign up the user
-      dispatch(sessionActions.signup({ email, username, password}))
+      dispatch(sessionActions.signup({ email, username, password }))
         .then(() => {
-          // Handle successful signup here if needed
         })
         .catch(async (res) => {
-          // Handle errors from the signup process
           const data = await res.json();
           if (data && data.errors) {
             setErrors(data.errors.map(error => error.message || error));
@@ -70,7 +66,7 @@ function SignupFormPage() {
         });
     }
   };
-  
+
 
 
 
@@ -94,6 +90,7 @@ function SignupFormPage() {
               Email address
               <input
                 type="text"
+                className={errors.some(error => error.includes('email')) ? 'error' : ''}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@domain.com"
@@ -121,7 +118,6 @@ function SignupFormPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              {/* <div>hide</div> */}
             </label>
             <p className="directions">
               The password must contain at least 8 characters.
@@ -199,9 +195,9 @@ function SignupFormPage() {
               {GENDERS.map(genderOption => {
                 return (
                   <label className="gender-option">
-                  <p className={gender === genderOption ? "selected" : ""}
-                    onClick={(e) => setGender(genderOption)}>{genderOption}</p>
-                </label>
+                    <p className={gender === genderOption ? "selected" : ""}
+                      onClick={(e) => setGender(genderOption)}>{genderOption}</p>
+                  </label>
                 )
               })}
 

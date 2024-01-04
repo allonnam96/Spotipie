@@ -81,14 +81,13 @@ body {
   background-image: linear-gradient(rgb(34, 34, 34), black);
 }
 
-
 input[type="text"], input[type="password"], select {
   width: 100%;
   margin-bottom: 10px;
   border-radius: 4px;
-  box-sizing: border-box; /* Include padding in the width */
+  box-sizing: border-box;
   background: #151515;
-  color: white; /* Text color for input */
+  color: white;
 }
 
 input:hover, select:hover {
@@ -148,7 +147,6 @@ input[type="radio"] {
 .user-auth-button {
   width: 100%;
   padding: 1em;
-
   margin-top: 1em;
   background-color: #1DB954;
   border: none;
@@ -168,20 +166,20 @@ input[type="radio"] {
 
 input[type="range"]::-webkit-slider-runnable-song {
   /* background-color: #053a5f; */
-  height: 0.4em;
+  height: 0.1em;
 }
 
 /******** Firefox ********/
 input[type="range"]::-moz-range-song {
   /* background-color: #053a5f; */
-  height: 0.4em;
+  height: 0.1em;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  margin-top: -0.4em; /* Centers thumb on the song */
-  height: 1em;
+  margin-top: -0.1em; /* Centers thumb on the song */
+  height: 0.1em;
   opacity: 0;
 }
 
