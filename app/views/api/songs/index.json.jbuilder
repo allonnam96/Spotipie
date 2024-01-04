@@ -8,7 +8,7 @@
       json.artist song.artist.name
       json.artistId song.artist.id
       json.duration song.duration
-      json.albumCover song.album.img_url
+      json.imgUrl song.album.img_url
       json.songUrl url_for(song.song_file)
       json.explicit song.explicit
     end

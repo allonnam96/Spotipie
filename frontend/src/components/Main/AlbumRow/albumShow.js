@@ -16,6 +16,7 @@ const AlbumShow = () => {
     const songs = useSelector(getSongs(albumId));
     const [selected, setSelected] = useState(-1);
     const [hovered, setHovered] = useState(-1);
+    
 
     const totalDuration = songs.reduce((total, song) => {
       const [minutes, seconds] = song.duration.split(':').map(Number);
@@ -48,8 +49,6 @@ const AlbumShow = () => {
       dispatch(fetchAlbum(albumId));
     }, [dispatch, albumId]);
 
-    
-            
 
     return (
           
@@ -60,16 +59,13 @@ const AlbumShow = () => {
       <h2>{album?.title}</h2>
       <div className="album-meta">
         <span className="artist-meta-name"> {album?.artistName}</span>
-        
         <span>• {album?.year}</span> 
-        
         <span>• {songs.length} songs, {`${Math.floor(totalDuration / 60)} min ${`0${totalDuration % 60}`.slice(-2)} sec`}</span>
       </div>
     </div>
   </div>
   <div className="song-list-container">
     <div className="song-list">
-      
     <span className="song-number-number"># </span>
     <span className="song-title-title">Title</span>
     <span className="song-duration-duration"> <Duration/> </span>
@@ -86,11 +82,9 @@ const AlbumShow = () => {
           {index === hovered || index === selected ?
             <SmallPlay /> :
             <span className="song-number">{index + 1}</span>}
-
           <span className="song-title">{song.title}
-            <span className="song-artistName">{album?.artistName}</span>
+            <span className="song-artistName">{song?.artist}</span>
           </span>
-
           <span className="song-duration">{song.duration}</span>
         </div>
       ))}

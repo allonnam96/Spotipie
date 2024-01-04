@@ -1,11 +1,7 @@
-
-
 #login{
-  /* position: fixed; */
   margin: 2.2em auto 2em;
   width: 93%;
   max-width: 50em;
-
   background-color: rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
@@ -19,13 +15,10 @@
 
 #login form{
   max-width: 300px;
-  /* margin: 0 auto; */
   margin: 0.5em 0em 1.5em;
-  
   border-radius: 10px;
   flex-direction: column;
   align-items: center;
-  /* padding-top: 30px; */
 }
 
 #my-contacts {
@@ -37,14 +30,6 @@
   max-width: 300px;
 }
 
-#my-contacts > li {
-  padding: 0.7em .001em;
-  border: 1px solid rgb(144, 144, 144);
-  border-radius: 25px;
-  text-align: center;
-  color: rgb(255, 255, 255);
-}
-
 #login label {
   color: rgb(245, 245, 245);
   margin-bottom: 1em;
@@ -54,25 +39,21 @@
 #login input {
   margin-top: 0.6em;
   padding: 1.1em 0.95em;
-
   border: 1px solid rgb(95, 94, 94);
   -webkit-text-fill-color: white;
   border-radius: 5px;
   outline: none;
   transition: border-color 0.1s ease-in;
-  /* ali */
 }
 
 #login input, #login select{
   margin-top: 0.6em;
   padding: 1.1em 0.95em;
-
   border: 1px solid rgb(95, 94, 94);
   -webkit-text-fill-color: white;
   border-radius: 5px;
   outline: none;
   transition: border-color 0.1s ease-in;
-  /* ali */
 }
 
 input[type="text"],
@@ -80,9 +61,9 @@ input[type="password"] {
   width: 100%;
   margin-bottom: 10px;
   border-radius: 4px;
-  box-sizing: border-box; /* Include padding in the width */
+  box-sizing: border-box;
   background: #151515;
-  color: white; /* Text color for input */
+  color: white;
 }
 
 #login h1 {
@@ -109,8 +90,8 @@ input[type="password"] {
   margin-right: 5px;
   padding: 10px;
   width: auto;
-  background-color: #fff; /* White background for social buttons */
-  border-radius: 20px; /* Add border-radius to match other buttons */
+  background-color: #fff;
+  border-radius: 20px;
 }
 
 .social-login button:last-child {
@@ -118,10 +99,9 @@ input[type="password"] {
 }
 
 .social-login img {
-  height: 20px; /* Example size, adjust as needed */
+  height: 20px; 
 }
 
-/* Additional styles for 'Remember me' and 'Forgot your password?' links */
 .checkbox-container {
   display: flex;
   align-items: center;
@@ -136,32 +116,27 @@ input[type="password"] {
 .forgot-password {
   display: block;
   text-align: center;
-  color: #B3B3B3; /* Light grey text */
+  color: #B3B3B3;
   margin-top: 20px;
   font-size: 14px;
   text-decoration: none;
 }
 
 .forgot-password:hover {
-  color: white; /* White text on hover */
+  color: white;
 }
 
 .top-bar {
-  background-color: #000; /* Spotify's characteristic black background */
-  padding: 10px 20px; /* Adjust the padding as needed */
+  background-color: #000;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .logo {
-  height: 40px; /* Adjust based on your actual logo size */
+  height: 40px; 
   width: auto;
-}
-
-#my-contacts li:hover {
-  border-color: white;
-  cursor: pointer;
 }
 
 #signup form{
@@ -185,4 +160,25 @@ input[type="password"] {
   width: 70%;
   border: none;
   border-top: 1px solid rgb(47, 47, 47);
+}
+
+#my-contacts a.contact-item {
+  display: block;
+  padding: 0.7em .001em;
+  border: 1px solid rgb(144, 144, 144);
+  border-radius: 25px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  text-decoration: none; 
+  margin-bottom: 0.5em; 
+}
+
+#my-contacts a.contact-item:hover {
+  border-color: white; 
+  background-color: rgba(255, 255, 255, 0.1); 
+  cursor: pointer;
+}
+
+.contact-link {
+  color: white;
 }

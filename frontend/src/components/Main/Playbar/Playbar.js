@@ -8,16 +8,14 @@ import { ReactComponent as Pause } from "../../../_imgs/svg/Pause.svg";
 import { ReactComponent as Play } from "../../../_imgs/svg/Play.svg";
 import { ReactComponent as SpeakerMuted } from "../../../_imgs/svg/SpeakerMuted.svg"
 import { getAlbum } from "../../../store/album";
-import { getSongs } from "../../../store/song";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { togglePlay } from "../../../store/playbar";
 import { receiveSong } from "../../../store/song";
 
 const Playbar = () => {
-
     const currentAlbum = useSelector(state => state.playbar.currentAlbum)
     const currentSong = useSelector(state => state.playbar.currentSong)
-    const isPlaying = useSelector(state => state.session.isPlaying);
+    const isPlaying = useSelector(state => state.playbar.isPlaying);
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const { albumId } = useParams();
@@ -51,8 +49,7 @@ const Playbar = () => {
         audio.play()
     }, [currentSong])
 
-    const changePlayPause = () => {
-        console.log("Is Playing:", isPlaying);
+    const changePlayPause = (currentSong) => {
         if (!isPlaying) {
             audioPlayer.current.play();
         } else {
@@ -80,8 +77,11 @@ const Playbar = () => {
     };
 
     const whilePlaying = () => {
-        progressBar.current.value = audioPlayer.current.currentTime;
-        changeCurrentTime();
+        const currentTime = audioPlayer.current.currentTime;
+        const progressPercent = (currentTime / duration) * 100;
+        progressBar.current.value = currentTime;
+        progressBar.current.style.setProperty('--progress-width', `${progressPercent}%`);
+        setCurrentTime(currentTime);
     };
 
     const calculateTime = (sec) => {
@@ -98,14 +98,15 @@ const Playbar = () => {
     };
 
     const changeCurrentTime = () => {
-        progressBar.current.style.width = `${(progressBar.current.value / duration) * 100}%`;
+        const progress = (progressBar.current.value / duration) * 100;
+        progressBar.current.style.background = `linear-gradient(to right, #b3b3b3 ${progress}%, #404040 ${progress}%)`;
         setCurrentTime(progressBar.current.value);
     };
 
     const playPreviousSong = () => {
         const currentSongIndex = currentAlbum.findIndex(song => song.id === currentSong.id);
 
-        const prevSongIndex = (currentSongIndex - 1 + currentAlbum.length) % currentAlbum.length; // Loop to the end
+        const prevSongIndex = (currentSongIndex - 1 + currentAlbum.length) % currentAlbum.length;
         const prevSong = currentAlbum[prevSongIndex];
         dispatch(receiveSong(prevSong));
 
@@ -116,7 +117,7 @@ const Playbar = () => {
 
     const playNextSong = () => {
         const currentSongIndex = currentAlbum.findIndex(song => song.id === currentSong.id);
-        const nextSongIndex = (currentSongIndex + 1) % currentAlbum.length; // Loop back to the start
+        const nextSongIndex = (currentSongIndex + 1) % currentAlbum.length;
         const nextSong = currentAlbum[nextSongIndex];
         dispatch(receiveSong(nextSong));
 
@@ -131,12 +132,12 @@ const Playbar = () => {
                 <Link to={`/albums/${albumId}`}>
                     <img src={album?.imgUrl} alt="Album Cover" />
                 </Link>
-                <div className="footer-title">
-                    <Link to={`/albums/${albumId}`}>
-                        <div className="left-title">{album?.title}</div>
-                        <div className="left-name">{album?.artistName}</div>
-                    </Link>
-                </div>
+            </div>
+            <div className="footer-title">
+                <Link to={`/albums/${albumId}`}>
+                    <div className="left-title">{currentSong?.title}</div>
+                    <div className="left-name">{currentSong?.artist}</div>
+                </Link>
             </div>
             <div className="playbar">
                 <div className="controls">
@@ -145,7 +146,7 @@ const Playbar = () => {
                         <div className="backwardBtn" onClick={playPreviousSong}>
                             <Backward />
                         </div>
-                        <div className="playPause" onClick={changePlayPause}>
+                        <div className="playPause" onClick={() => changePlayPause(currentSong)}>
                             {isPlaying ? (
                                 <div className="pauseBtn">
                                     <Pause />
@@ -162,9 +163,9 @@ const Playbar = () => {
                     </div>
                 </div>
                 <div className="bottom">
-                    <div className="currentTime">
+                    <span className="currentTime">
                         {duration && !isNaN(duration) ? calculateTime(currentTime) : "0:00"}
-                    </div>
+                    </span>
                     <input
                         type="range"
                         className="progressBar"
@@ -173,9 +174,9 @@ const Playbar = () => {
                         max={duration}
                         onChange={changeProgress}
                     />
-                    <div className="duration">
+                    <span className="duration">
                         {duration && !isNaN(duration) ? calculateTime(duration) : "0:00"}
-                    </div>
+                    </span>
                 </div>
             </div>
 

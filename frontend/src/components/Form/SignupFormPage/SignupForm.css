@@ -1,59 +1,184 @@
 #signup {
-    margin: 1em auto 0;
-    width: 50%;
-    max-width: 350px;
+  margin: 0;
+  width: 100%;
+  max-width: 350px;
+  background: #191414;
+  padding: 2em;
+  border-radius: 4px;
+  color: white;
 }
 
 #signup-header {
-    display: flex;
-    align-items: center;
-    column-gap: 1em;
-    margin-bottom: 2em;
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+  margin-bottom: 2em;
 }
 
 #signup-header p {
-    margin: 0;
-    font-size: 16px;
+  margin: 0;
+  font-size: 16px;
+  color: #b3b3b3;
+}
+
+#signup-header h2 {
+  color: white;
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.form-section {
+  margin-bottom: 20px;
 }
 
 #signup-header > div > p:first-child {
-    margin-bottom: 0.3em;
-    font-family: font-medium;
-    /* font-size: 15px; */
-    color: grey;
+  margin-bottom: 0.3em;
+  font-family: font-medium;
+  color: grey;
+}
+
+.form-section .directions {
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form-section {
+  margin-bottom: 20px;
 }
 
 #signup .directions {
-    font-family: "font-medium";
-    font-size: 13.5px;
-    color: grey;
+  font-family: "font-medium";
+  font-size: 13.5px;
+  color: grey;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  background: #333;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  outline: none;
+  border: 1px solid #1ed760;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+}
+
+.date-of-birth {
+  display: flex;
+  gap: 10px;
+}
+
+.gender-option {
+  display: block; 
+}
+
+.date-of-birth select,
+.date-of-birth input {
+  border: 1px solid #333;
+  color: #b3b3b3;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 1em;
+}
+
+.date-of-birth .select {
+  flex: 2; 
+}
+
+.date-of-birth .select,
+.date-of-birth input {
+  flex: 1; 
+  position: relative; 
+}
+
+.date-of-birth select.error,
+.date-of-birth input.error {
+  border: 1px solid #ff0000; 
+}
+.date-of-birth .select {
+  flex-basis: 60%; 
+}
+
+.date-of-birth input[type="text"]:first-of-type {
+  flex-basis: 15%; 
+}
+
+.date-of-birth input[type="text"]:last-of-type {
+  flex-basis: 30%;
 }
 
 .gender-option p {
-    display: inline-flex;
-    align-items: center;
-    margin-right: 1em;
-    font-family: "font-light";
-    font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1em;
+  font-family: "font-light";
+  font-size: 14px;
+}
+
+.gender-option {
+  margin-top: 0.5em;
+  padding: 0.5em;
+  display: flex;
 }
 
 .gender-option p::before {
-    content: "";
-    display: inline-block;
-    box-sizing: border-box;
-    margin-right: 1em;
-    height: 1em;
-    width: 1em;
-    border: 1px solid grey;
-    border-radius: 50%;
-    transition: border-width 0.05s ease-in;
+  content: "";
+  display: inline-block;
+  box-sizing: border-box;
+  margin-right: 1em;
+  height: 1em;
+  width: 1em;
+  border: 1px solid grey;
+  border-radius: 50%;
+  transition: border-width 0.05s ease-in;
 }
 
 .gender-option:hover p::before {
-    border-color: #1ED760;
+  border-color: #1ed760;
 }
 
 .gender-option .selected::before {
-    border-width: 3.5px;
-    border-color: #1ED760;
+  border-width: 3.5px;
+  border-color: #1ed760;
+}
+
+.gradient-background {
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  color: #fff;
+  background-color: #000;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-left: 3px solid #ff0000;
+  font-size: 14px;
+}
+
+input.error {
+  border: 1px solid #ff0000;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-top: 8px;
+  font-size: 14px; 
 }

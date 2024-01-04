@@ -19,8 +19,12 @@
 
 .album-cover {
     height: 14em;
-    /* Adjust as needed */
     padding: 1em;
+    border-radius: 7px;
+}
+
+.album-cover img {
+    border-radius: 7px;
 }
 
 .album-details {
