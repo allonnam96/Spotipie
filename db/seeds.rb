@@ -8,57 +8,6 @@ require "open-uri"
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# ApplicationRecord.transaction do 
-  puts "Destroying tables..."
-  # Unnecessary if using `rails db:seed:replant`
-  Artist.destroy_all
-  Album.destroy_all
-  User.destroy_all
-  Song.destroy_all
-
-  puts "Resetting primary keys..."
-  ApplicationRecord.connection.reset_pk_sequence!('users')
-  ApplicationRecord.connection.reset_pk_sequence!('artists')
-  ApplicationRecord.connection.reset_pk_sequence!('albums')
-  ApplicationRecord.connection.reset_pk_sequence!('songs')
-
-  puts "Creating users..."
-  User.create!(
-    username: 'Demo', 
-    email: 'demo@user.io', 
-    password: 'password'
-  )
-
-  Artist.create!(name: "New Jeans")
-  Artist.create!(name: "aespa")
-  Artist.create!(name: "LE SSERAFIM")
-  Artist.create!(name: "IVE")
-  Artist.create!(name: "BLACKPINK")
-
-  Album.create!(
-    title: "New Jeans", artist_id: 1, year: 2022, img_url: 'https://spotipie-seeds.s3.amazonaws.com/NewJeansAlbum1.jpg', genre: "K-pop", publisher: "© 2022 ADOR Co., Ltd."
-  )
-  Album.create!(
-    title: "Get Up", artist_id: 1, year: 2023, img_url: 'https://spotipie-seeds.s3.amazonaws.com/getup.jpeg', genre: "K-pop", publisher: "© 2023 ADOR Co., Ltd."
-  )
-  Album.create!(
-    title: "MY WORLD", artist_id: 2, year: 2023, img_url: 'https://spotipie-seeds.s3.amazonaws.com/Aespa_-_My_World.png', genre: "K-pop", publisher: "© 2023 SM Entertainment, under exclusive license to Warner Records Inc."
-  )
-  Album.create!(
-    title: "Drama", artist_id: 2, year: 2023, img_url: 'https://spotipie-seeds.s3.amazonaws.com/aespa-Drama-GiantVersFinal1_1500x.webp', genre: "K-pop", publisher: "© 2023 ADOR Co., Ltd."
-  )
-  Album.create!(
-    title: "UNFORGIVEN", artist_id: 3, year: 2023, img_url: 'https://spotipie-seeds.s3.amazonaws.com/UNFORGIVEN_digital_album_cover.webp', genre: "K-pop", publisher: "© 2023 SOURCE MUSIC"
-  )
-  Album.create!(
-    title: "I'VE MINE", artist_id: 4, year: 2023, img_url: 'https://spotipie-seeds.s3.amazonaws.com/I%2527ve_Mine_digital_cover.webp', genre: "K-pop", publisher: "© 2023 Starship Entertainment co.,ltd"
-  )
-  Album.create!(
-    title: "THE ALBUM", artist_id: 5, year: 2020, img_url: 'https://spotipie-seeds.s3.amazonaws.com/THE+ALBUM.jpeg'
-  )
-  Album.create!(
-    title: "BORN PINK", artist_id: 5, year: 2022, img_url: 'https://spotipie-seeds.s3.amazonaws.com/Born_Pink_Digital.jpeg', genre: "K-pop", publisher: "© 2020 YG Entertainment, distributed through Interscope Records"
-  )
 
 # Song.create!(title: "Attention", artist_id: 1, album_id: 1, duration: "3:00", song_url: "https://spotipie-seeds.s3.amazonaws.com/New+Jeans/Attention.mp3")
 # Song.create!(title: "Hype Boy", artist_id: 1, album_id: 1, duration: "2:59", song_url: "https://spotipie-seeds.s3.amazonaws.com/New+Jeans/HypeBoy.mp3")
@@ -117,10 +66,61 @@ require "open-uri"
 # Song.create!(title: "Tally", artist_id: 5, album_id: 8, duration: "3:04", song_url:"https://spotipie-seeds.s3.amazonaws.com/Born+Pink/Tally.mp3")
 # Song.create!(title: "Ready For Love", artist_id: 5, album_id: 8, duration: "3:04", song_url:"https://spotipie-seeds.s3.amazonaws.com/Born+Pink/Ready+for+love.mp3")
 
+# ApplicationRecord.transaction do 
+  puts "Destroying tables..."
+  # Unnecessary if using `rails db:seed:replant`
+  Artist.destroy_all
+  Album.destroy_all
+  User.destroy_all
+  Song.destroy_all
+
+  puts "Resetting primary keys..."
+  ApplicationRecord.connection.reset_pk_sequence!('users')
+  ApplicationRecord.connection.reset_pk_sequence!('artists')
+  ApplicationRecord.connection.reset_pk_sequence!('albums')
+  ApplicationRecord.connection.reset_pk_sequence!('songs')
+
+  puts "Creating users..."
+  User.create!(
+    username: 'Demo', 
+    email: 'demo@user.io', 
+    password: 'password'
+  )
+
+  Artist.create!(name: "New Jeans")
+  Artist.create!(name: "aespa")
+  Artist.create!(name: "LE SSERAFIM")
+  Artist.create!(name: "IVE")
+  Artist.create!(name: "BLACKPINK")
+
+  Album.create!(
+    title: "New Jeans", artist_id: 1, year: 2022, img_url: 'https://spotipie-seeds.s3.amazonaws.com/NewJeansAlbum1.jpg', genre: "K-pop", publisher: "© 2022 ADOR Co., Ltd."
+  )
+  Album.create!(
+    title: "Get Up", artist_id: 1, year: 2023, img_url: 'https://spotipie-seeds.s3.amazonaws.com/getup.jpeg', genre: "K-pop", publisher: "© 2023 ADOR Co., Ltd."
+  )
+  Album.create!(
+    title: "MY WORLD", artist_id: 2, year: 2023, img_url: 'https://spotipie-seeds.s3.amazonaws.com/Aespa_-_My_World.png', genre: "K-pop", publisher: "© 2023 SM Entertainment, under exclusive license to Warner Records Inc."
+  )
+  Album.create!(
+    title: "Drama", artist_id: 2, year: 2023, img_url: 'https://spotipie-seeds.s3.amazonaws.com/aespa-Drama-GiantVersFinal1_1500x.webp', genre: "K-pop", publisher: "© 2023 ADOR Co., Ltd."
+  )
+  Album.create!(
+    title: "UNFORGIVEN", artist_id: 3, year: 2023, img_url: 'https://spotipie-seeds.s3.amazonaws.com/UNFORGIVEN_digital_album_cover.webp', genre: "K-pop", publisher: "© 2023 SOURCE MUSIC"
+  )
+  Album.create!(
+    title: "I'VE MINE", artist_id: 4, year: 2023, img_url: 'https://spotipie-seeds.s3.amazonaws.com/I%2527ve_Mine_digital_cover.webp', genre: "K-pop", publisher: "© 2023 Starship Entertainment co.,ltd"
+  )
+  Album.create!(
+    title: "THE ALBUM", artist_id: 5, year: 2020, img_url: 'https://spotipie-seeds.s3.amazonaws.com/THE+ALBUM.jpeg'
+  )
+  Album.create!(
+    title: "BORN PINK", artist_id: 5, year: 2022, img_url: 'https://spotipie-seeds.s3.amazonaws.com/Born_Pink_Digital.jpeg', genre: "K-pop", publisher: "© 2020 YG Entertainment, distributed through Interscope Records"
+  )
 songs_info = [
-
+  
   {title: "Attention", artist_id: 1, album_id: 1, explicit: false, duration: "3:00", song_url: "https://spotipie-seeds.s3.amazonaws.com/New+Jeans/Attention.mp3", filename: "New+Jeans/Attention.mp3"},
-
+  
   {title: "Hype Boy", artist_id: 1, album_id: 1, explicit: false, duration: "2:59", song_url: "https://spotipie-seeds.s3.amazonaws.com/New+Jeans/HypeBoy.mp3", filename:"New+Jeans/HypeBoy.mp3"},
   {title: "Cookie", artist_id: 1, album_id: 1, explicit: false, duration: "3:55", song_url: "https://spotipie-seeds.s3.amazonaws.com/New+Jeans/Cookie.mp3", filename:"New+Jeans/Cookie.mp3"},
   {title: "Hurt", artist_id: 1, album_id: 1, explicit: false, duration: "2:57", song_url: "https://spotipie-seeds.s3.amazonaws.com/New+Jeans/Hurt.mp3", filename:"New+Jeans/Hurt.mp3"},
