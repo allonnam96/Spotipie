@@ -1,0 +1,59 @@
+.search-album {
+    background-color: #242424;
+    height: 29px;
+    position: fixed;
+    top: 11px;
+    left: 450px;
+    width: 280px;
+    border-radius: 30px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0 8px;
+    z-index: 1000;
+  }
+  
+  .search-album svg {
+    fill: gray;
+    height: 20px;
+  }
+  
+  .search-album input {
+    height: 100%;
+    width: 80%;
+    border: none;
+    color: white;
+    background-color: transparent;
+    font-size: .9rem;
+  }
+
+  .search-album input:focus {
+    border: none;
+  }
+  
+  .search-album:hover svg {
+    fill: white;
+  }
+  
+  .no-results-div, .search-results {
+    position: absolute;
+    top: 0;
+    left: 11%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    gap: 10px;
+  }
+  
+  .no-results-div h2 {
+    font-size: 1.5rem;
+  }
+  
+  .no-results-div p {
+    font-size: 1rem;
+    font-family: 'CircularSpotifyBook', Arial, Helvetica, sans-serif;
+  }

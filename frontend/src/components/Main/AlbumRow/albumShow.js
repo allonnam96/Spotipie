@@ -6,10 +6,9 @@ import { getAlbum, fetchAlbum } from "../../../store/album";
 import { getSongs } from "../../../store/song";
 import { ReactComponent as SmallPlay } from "../../../_imgs/svg/smallPlay.svg";
 import { ReactComponent as Duration } from "../../../_imgs/svg/Duration.svg";
-import { receiveAlbum, togglePlay } from "../../../store/playbar";
+import { receiveAlbum, receiveSong, setPlaying } from "../../../store/playbar";
 
 const AlbumShow = () => {
-    const isPlaying = useSelector(state => state.session.isPlaying);
     const { albumId } = useParams();
     const dispatch = useDispatch();
     const album = useSelector(getAlbum(albumId));
@@ -36,10 +35,9 @@ const AlbumShow = () => {
     };
 
     const play = (song, album) => {
-      if (!isPlaying){
-        dispatch(togglePlay(song))
-        dispatch(receiveAlbum(album))
-      }
+      dispatch(setPlaying(true))
+      dispatch(receiveSong(song))
+      dispatch(receiveAlbum(album))
       let audio = document.querySelector("audio")
       audio.src = song.songUrl
       audio.play()

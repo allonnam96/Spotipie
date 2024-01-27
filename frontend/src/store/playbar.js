@@ -4,7 +4,7 @@ export const RECEIVE_SONG = 'songs/RECEIVE_SONG';
 export const RECEIVE_SONGS = 'songs/RECEIVE_SONGS';
 export const RECEIVE_ALBUM_FOR_PLAYBAR = 'songs/RECEIVE_ALBUM_FOR_PLAYBAR';
 export const RECEIVE_ALBUMS = 'songs/RECEIVE_ALBUMS';
-export const TOGGLE_PLAY = 'songs/TOGGLE_PLAY';
+export const SET_PLAYING = 'songs/SET_PLAYING';
 export const SET_VOLUME = 'songs/SET_VOLUME';
 export const SET_SONG_POSITION = 'songs/SET_SONG_POSITION';
 export const TOGGLE_SHUFFLE = 'songs/TOGGLE_SHUFFLE';
@@ -88,9 +88,9 @@ export const receiveAlbums = (albums) => ({
   payload: albums
 })
 
-export const togglePlay = (currentSong) => ({
-  type: TOGGLE_PLAY,
-  payload: currentSong
+export const setPlaying = (isPlaying) => ({
+  type: SET_PLAYING,
+  payload: isPlaying
 });
 
 export const setVolume = (volume) => ({
@@ -142,9 +142,8 @@ const playbarReducer = (state = initialState, action) => {
       return { ...state, currentAlbum: action.payload }
     case RECEIVE_ALBUMS:
       return { ...state, albums: action.payload }
-    case TOGGLE_PLAY:
-      return { ...state, isPlaying: !state.isPlaying, 
-        currentSong: action.payload };
+    case SET_PLAYING:
+      return { ...state, isPlaying: action.payload };
     case SET_VOLUME:
       return { ...state, volume: action.payload };
     case SET_SONG_POSITION:
