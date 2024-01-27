@@ -9,7 +9,7 @@ import { ReactComponent as Play } from "../../../_imgs/svg/Play.svg";
 import { ReactComponent as SpeakerMuted } from "../../../_imgs/svg/SpeakerMuted.svg"
 import { getAlbum } from "../../../store/album";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { togglePlay } from "../../../store/playbar";
+import { setPlaying } from "../../../store/playbar";
 import { receiveSong } from "../../../store/song";
 
 const Playbar = () => {
@@ -22,11 +22,32 @@ const Playbar = () => {
     const album = useSelector(getAlbum(albumId));
     const [volume, setVolume] = useState(1);
     const [isMuted, setIsMuted] = useState(false);
-
     const audioPlayer = useRef();
     const progressBar = useRef();
     const volumeControl = useRef();
     const dispatch = useDispatch();
+    const MAX_VOLUME_WIDTH = "7em";
+
+    useEffect(() => {
+        progressBar.current.style.background = `linear-gradient(to right, #b3b3b3 0%, #404040 0%)`;
+        volumeControl.current.style.setProperty('--volume-width', MAX_VOLUME_WIDTH);
+    }, []);
+
+    useEffect(() => {
+        const handleKeydown = e => {
+            if (e.keyCode == 32) {
+                e.preventDefault();
+                if (Object.keys(currentSong).length) {
+                    changePlayPause();
+                }
+            }
+        }
+        document.addEventListener("keydown", handleKeydown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeydown);
+        }
+    }, [currentSong, isPlaying]);
 
     useEffect(() => {
         const seconds = Math.floor(audioPlayer.current.duration);
@@ -49,13 +70,14 @@ const Playbar = () => {
         audio.play()
     }, [currentSong])
 
-    const changePlayPause = (currentSong) => {
+    const changePlayPause = () => {
         if (!isPlaying) {
             audioPlayer.current.play();
+            dispatch(setPlaying(true));
         } else {
             audioPlayer.current.pause();
+            dispatch(setPlaying(false));
         }
-        dispatch(togglePlay(currentSong));
     };
 
     const toggleMute = () => {
@@ -72,6 +94,10 @@ const Playbar = () => {
     const changeVolume = (e) => {
         const newVolume = e.target.value;
         audioPlayer.current.volume = newVolume;
+    
+        const volumePercent = `calc(${newVolume} * ${MAX_VOLUME_WIDTH})`;
+        volumeControl.current.style.setProperty('--volume-width', `${volumePercent}`);
+        
         setVolume(newVolume);
         setIsMuted(newVolume === '0');
     };
@@ -105,14 +131,10 @@ const Playbar = () => {
 
     const playPreviousSong = () => {
         const currentSongIndex = currentAlbum.findIndex(song => song.id === currentSong.id);
-
         const prevSongIndex = (currentSongIndex - 1 + currentAlbum.length) % currentAlbum.length;
         const prevSong = currentAlbum[prevSongIndex];
         dispatch(receiveSong(prevSong));
-
-        if (!isPlaying) {
-            dispatch(togglePlay(prevSong));
-        }
+        dispatch(setPlaying(true));
     };
 
     const playNextSong = () => {
@@ -120,18 +142,15 @@ const Playbar = () => {
         const nextSongIndex = (currentSongIndex + 1) % currentAlbum.length;
         const nextSong = currentAlbum[nextSongIndex];
         dispatch(receiveSong(nextSong));
-
-        if (!isPlaying) {
-            dispatch(togglePlay(nextSong));
-        }
+        dispatch(setPlaying(true));
     };
 
     return (
         <div className="footer">
             <div className="img-playbar">
-                <Link to={`/albums/${albumId}`}>
-                    <img src={album?.imgUrl} alt="Album Cover" />
-                </Link>
+                {Object.keys(currentSong).length ? <Link to={`/albums/${albumId}`}>
+                    <img src={currentSong.imgUrl} alt="Album Cover" />
+                </Link> : <></>}
             </div>
             <div className="footer-title">
                 <Link to={`/albums/${albumId}`}>
@@ -139,7 +158,7 @@ const Playbar = () => {
                     <div className="left-name">{currentSong?.artist}</div>
                 </Link>
             </div>
-            <div className="playbar">
+            <div className={`playbar ${Object.keys(currentSong).length ? "active" : "inactive"}`}>
                 <div className="controls">
                     <audio preload="metadata" ref={audioPlayer} onTimeUpdate={whilePlaying} />
                     <div className="alignment-buttons">

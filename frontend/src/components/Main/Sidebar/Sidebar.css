@@ -1,5 +1,4 @@
 .sidebar {
-
   color: #fff;
   height: calc(100% - 0.5em);
   display: flex;
@@ -8,10 +7,6 @@
   border-radius: 17px;
   margin-top: 0.5em;
   margin-left: 0.5em;
-}
-
-.sidebar__logo {
-  height: 3em;
 }
 
 .sidebarOption {
@@ -25,6 +20,18 @@
   text-decoration: none;
 }
 
+.sidebarOption__icon {
+  fill: grey;
+  width: 20px;
+  height: 20px;
+  margin-right: 1em;
+  transition: 70ms fill ease-in;
+}
+
+.sidebar__logo {
+  height: 3em;
+}
+
 .homelink {
   text-decoration: none;
 }
@@ -34,23 +41,12 @@
   transition: 70ms color ease-in;
 }
 
-.sidebarOption__icon {
-  fill: grey;
-  /* For SVG icons, this sets the color to white */
-  width: 20px;
-  /* Adjust the size as needed */
-  height: 20px;
-  /* Adjust the size as needed */
-  margin-right: 1em;
-}
-
 .sidebarOption svg {
   fill: grey;
   width: 1.6em;
-  /* Adjust the size as needed */
   height: 1.6em;
-  /* Adjust the size as needed */
   margin-right: 1em;
+  transition: 70ms fill ease-in;
 }
 
 .sidebar ul {
@@ -76,4 +72,15 @@
   padding-left: 10px;
   padding-right: 10px;
   max-height: 100px;
+}
+
+.sidebarOption:hover,
+.homelink.active {
+  color: white;
+  transition: 70ms color ease-in;
+}
+
+.sidebarOption:hover .sidebarOption__icon,
+.homelink.active .sidebarOption__icon {
+  fill: white;
 }

@@ -41,6 +41,10 @@
   padding: 0.5em;
 }
 
+.footer-title {
+  width: 7em;
+}
+
 .footer-title a,
 .footer-title a:visited {
   text-decoration: none;
@@ -71,13 +75,19 @@
   width: calc(100% - 20px);
   margin: 0;
   height: 4px;
-  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 2px;
   position: relative;
 }
 
-.progressBar::-webkit-slider-thumb {
+.progressBar:hover,
+.progressBar:focus {
+  border: none;
+  outline: none;
+}
+
+.progressBar[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
+  position: relative;
   appearance: none;
   width: 16px;
   height: 16px;
@@ -85,7 +95,11 @@
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-  margin-top: -6px;
+  opacity: 0;
+}
+
+.playbar.active .progressBar[type="range"]:hover::-webkit-slider-thumb {
+  opacity: 1;
 }
 
 .progressBar::before {
@@ -95,14 +109,6 @@
   height: 4px;
   border-radius: 2px;
   width: var(--progress-width);
-}
-
-.progressBar::-webkit-slider-thumb {
-  opacity: 0;
-}
-
-.progressBar:hover::-webkit-slider-thumb {
-  opacity: 1;
 }
 
 .backwardBtn,
@@ -144,13 +150,13 @@
   height: 1em;
 }
 
-.backwardBtn svg:hover,
-.forwardBtn svg:hover {
+.playbar.active .backwardBtn svg:hover,
+.playbar.active .forwardBtn svg:hover {
   fill: #ffffff;
   cursor: auto;
 }
 
-.playBtn svg:hover {
+.playbar.active .playBtn svg:hover {
   transform: scale(1.07);
   cursor: auto;
 }
@@ -168,13 +174,39 @@
   background-color: rgb(30, 30, 30);
   flex: 1;
   accent-color: #ffffff;
-}
-
-.volume-slider:hover {
-  outline: none;
+  -webkit-appearance: none;
+  margin: 0;
+  height: 4px;
+  border-radius: 2px;
   border: none;
+  outline: none;
 }
 
+.volume-slider::before {
+  content: "";
+  position: absolute;
+  background: #1db954;
+  height: 4px;
+  border-radius: 2px;
+  width: var(--volume-width);
+  z-index: 1;
+}
+
+.volume-slider[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  position: relative;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  z-index: 2;
+}
+
+.volume-slider:hover,
 .volume-slider:focus {
   outline: none;
   border: none;

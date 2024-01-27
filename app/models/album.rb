@@ -18,7 +18,7 @@ class Album < ApplicationRecord
     validates :year, numericality: { minimum: 1800, maximum: 2100}
  
     belongs_to :artist
-    has_many :songs
+    has_many :songs, dependent: :destroy
 
     def self.search(query)
         where("title ILIKE ? OR genre ILIKE ?", "%#{query}%", "%#{query}%")
