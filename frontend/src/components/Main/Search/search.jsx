@@ -21,7 +21,8 @@ const Search = () => {
     clearTimeout(searchDelay);
     setSearchDelay(setTimeout(() => {
       const filtered = Object.values(albums).filter((album) =>
-        album.title.toLowerCase().includes(searchQuery.toLowerCase())
+        album.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        album.artistName.toLowerCase().includes(searchQuery.toLowerCase())
       );
       SetFilteredAlbums(filtered);
     }, 400));
